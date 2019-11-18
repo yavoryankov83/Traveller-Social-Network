@@ -261,7 +261,7 @@ const $getAllUsersPageableOnIndexView = function getAllUsersPageable() {
 let countPostPage = 0;
 const $getAllPostsPageableOnIndexView = function getAllPostsPageable() {
     const perPage = 5;
-    const $URL = `http://localhost:8080/api/v1/posts/public/pageable?page=${countPostPage}&size=${perPage}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/posts/public/pageable?page=${countPostPage}&size=${perPage}`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     const $postsCountDiv = $('#posts-count');
@@ -308,7 +308,7 @@ const $getAllPostsPageableByUserOnTimelineView = function getAllPostsByUserPagea
     const principalUsername = $('#principal-username').attr('principal-username');
     const principalPhoto = $('#principal-photo').attr('principal-photo');
     const principalId = $('#principal-id').attr('principal-id');
-    const $URL = `http://localhost:8080/api/v1/posts/users/${userId}/pageable?page=${countPostByUserPage}&size=${perPage}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/posts/users/${userId}/pageable?page=${countPostByUserPage}&size=${perPage}`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     const $postDiv = $('#postDiv');
