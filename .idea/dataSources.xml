@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="q7nhdu5yi7ox8tsb@rmspavs8mpub7dkq.chr7pe7iynqr.eu-west-1.rds.amazonaws.com" uuid="0800396a-ad32-48d1-8f08-8b785dfdd694">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://rmspavs8mpub7dkq.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/q7nhdu5yi7ox8tsb</jdbc-url>
+    </data-source>
+  </component>
+</project>
