@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2019-11-12T01:33:29" hostname="yavor-Aspire-A715-72G" time="0.019">
+  <properties/>
+  <testcase name="test_create_likedPost_when_data_is_valid" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.003"/>
+  <testcase name="get_likedPost_by_id_should_return_likedPost" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.001"/>
+  <testcase name="get_LikedPost_by_user_should_return_list_of_likedPost" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.0"/>
+  <testcase name="get_LikedPost_by_user_and_post_should_return_likedPost" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.001"/>
+  <testcase name="delete_likedPost" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.001"/>
+  <testcase name="get_count_likedPost_by_post_should_return_count_of_likedPost" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.001"/>
+  <testcase name="get_count_likedPost_by_user_should_return_count_of_likedPost" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.0"/>
+  <testcase name="get_likedPost_by_post_should_return_list_of_likedPost" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.001"/>
+  <testcase name="test_does_likedPost_exist_should_return_boolean" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.001"/>
+  <testcase name="should_throw_exception_create_likedPost_when_pass_invalid_post" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.002"/>
+  <testcase name="should_throw_exception_create_likedPost_when_pass_invalid_user" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.001"/>
+  <testcase name="should_throw_exception_create_likedPost_when_likedPost_exists" classname="com.telerikacademy.socialnetwork.services.LikedPostServiceImplTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

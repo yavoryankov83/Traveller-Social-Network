@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="This is social network for travellers."/>
+    <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page"/>
+    <meta name="robots" content="index, follow"/>
+    <title>NewsFeed | Check what your friends are doing</title>
+
+    <!-- Stylesheets
+    ================================================= -->
+    <base href="/">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/ionicons.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link href="css/emoji.css" rel="stylesheet">
+    <!--Google Webfont-->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,300italic,400italic,500,500italic,600,600italic,700'
+          rel='stylesheet' type='text/css'>
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header
+================================================= -->
+<header id="header">
+    <nav class="navbar navbar-default navbar-fixed-top menu">
+        <div class="container">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/index}"><img src="images/logo.png" alt="logo"/></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right main-menu">
+                    <li class="dropdown"><a th:href="@{/index}">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Newsfeed <span><img src="images/down-arrow.png" alt=""/></span></a>
+                        <ul class="dropdown-menu newsfeed-home">
+                            <li><a sec:authorize="hasRole('ROLE_USER')" href="newsfeed.html">Newsfeed</a></li>
+                            <li><a sec:authorize="hasRole('ROLE_USER')" href="newsfeed-images.html">Images</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a th:href="@{/friends}">My friends</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"> My Profile <span><img src="images/down-arrow.png" alt=""/></span></a>
+                        <ul class="dropdown-menu login">
+                            <li><a th:href="@{/timeline-about.html/{id}(id=${userPrincipal.getId()})}">My info</a></li>
+                            <li><a th:href="@{/timeline-album.html/{id}(id=${userPrincipal.id})}">My Albums</a></li>
+                            <li><a th:href="@{/friends}">My Friends</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a th:href="@{/admin}">Admin</a></li>
+                    <li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a th:href="@{/logout}">Logout</a></li>
+
+                </ul>
+                <form class="navbar-form navbar-right hidden-sm">
+                    <div class="form-group">
+                        <i class="icon ion-android-search"></i>
+                        <input id="input" class="form-control js-user-search" placeholder="Search here people ..." type="text">
+                    </div>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+</header>
+<!--Header End-->
+
+<div id="page-contents" sec:authorize="isAuthenticated()">
+    <div class="container">
+        <div class="row">
+
+            <!-- Newsfeed Common Side Bar Left
+            ================================================= -->
+            <div class="col-md-3 static">
+                <div class="profile-card" th:action="@{/newsfeed.html}" th:object="${userPrincipal}">
+                    <img th:attr="src=${userPrincipal.getUserPhotoAsString()}" alt="user" class="profile-photo"/>
+                    <h5><a th:href="@{/timeline-about.html/{id}(id = ${userPrincipal.id})}"
+                           th:text='${#strings.concat(userPrincipal.getFirstName()+" "+userPrincipal.getLastName())}'
+                           class="text-white">Principal Name</a></h5>
+                    <a th:href="@{/friends}" class="text-white" th:text='${#strings.concat(friendsCount)+" friends"}'><i
+                            class="ion ion-android-person-add"></i> Count friends</a>
+                </div><!--profile card ends-->
+                <ul class="nav-news-feed">
+                    <li>
+                        <div>
+                            <ion-icon name="paper" size="small" color="success"></ion-icon>
+                            <a th:href="@{/timeline-about.html/{id}(id = ${userPrincipal.id})}"> My Newsfeed</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <ion-icon name="contacts" size="small" color="primary"></ion-icon>
+                            <a th:href="@{/friends}"> Friends</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <ion-icon name="images" size="small" color="danger"></ion-icon>
+                            <a href="newsfeed-images.html"> Images</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-7">
+
+                <!-- Post Create Box
+                ================================================= -->
+                <div class="create-post" th:object="${newPost}">
+
+                    <div class="row">
+                        <div class="col-md-7 col-sm-7">
+                            <div class="form-group">
+                                <img th:object="${userPrincipal}" th:attr="src=${userPrincipal.getUserPhotoAsString()}"
+                                     alt="" class="profile-photo-md"/>
+                                <label for="exampleTextarea">
+                                    <textarea name="texts" th:field="*{content}" form="createPost" id="exampleTextarea"
+                                              maxlength="255" cols="30" rows="3" class="form-control"
+                                              placeholder="Write your post..."></textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <form id="createPost" th:action="@{/newsfeed.html/create}" method="POST"
+                                  th:object="${newPost}" enctype="multipart/form-data">
+                                <div></div>
+                                <div class="tools">
+                                    <ul class="publishing-tools list-inline">
+                                        <li><input type="file" accept="image/*" id="postPhoto" style="display:none"
+                                                   name="photo"><a id="a_postPhoto"><ion-icon name="images" size="small"></ion-icon></a>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+                                        </li>
+
+                                        <!-- Button trigger modal -->
+                                        <li><input type="button" data-toggle="modal" data-target="#video" id="postVideo"
+                                                   style="display:none"><a id="a_postVideo">
+                                            <ion-icon name="videocam" size="small"></ion-icon></a></li>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="video" role="dialog"
+                                             aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Add URL address
+                                                            of video</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="col-7">
+                                                            <label for="video-name">Video URL</label>
+                                                            <input type="text" id="video-name" th:field="*{video}"
+                                                                   class="form-control" name="video" form="createPost"
+                                                                   th:placeholder="'video' + ' URL'" autofocus
+                                                                   autocomplete/>
+                                                            <small class="text-muted">Must be URL address.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Add video
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Button trigger modal -->
+                                        <li><input type="button" data-toggle="modal" data-target="#location"
+                                                   id="postLocation" style="display:none"><a id="a_postLocation">
+                                            <ion-icon name="pin" size="small"></ion-icon></a></li>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="location" role="dialog"
+                                             aria-labelledby="exampleModalLabel1"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Add location
+                                                            address</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="col-7">
+                                                            <label for="location-name">Location address</label>
+                                                            <input type="text" id="location-name" th:field="*{location}"
+                                                                   class="form-control" name="location"
+                                                                   form="createPost"
+                                                                   th:placeholder="'Location' + ' address'" autofocus
+                                                                   autocomplete/>
+                                                            <small class="text-muted">Must be location address.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Add location
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    <button id="publish_post" type="submit" form="createPost"
+                                            class="btn btn-primary pull-right">Publish
+                                    </button>
+                                </div>
+                                <div id="visiblePost">
+                                    <label for="createPost">
+                                        <select id="post" th:field="*{visible}">
+                                            <option th:value="true" th:text="Public">Public</option>
+                                            <option th:value="false" th:text="Private">Private</option>
+                                        </select></label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- Post Create Box End-->
+
+                <!-- Post Content
+                ================================================= -->
+                <div th:id="'delete' + ${each_post.getId()}" id class="post-content" th:object="${posts}" th:each="each_post:${posts}">
+                    <img th:if="${each_post.getPostPhoto()!=null && each_post.getPostPhotoAsString()!=null}"
+                         th:attr="src=${each_post.getPostPhotoAsString()}"
+                         alt="post-image" class="img-responsive post-image"/>
+                    <!--                    Video Frame Start-->
+                    <iframe th:if="${each_post.getVideo()!=''&& each_post.getVideo()!=null}" width="600" height="300"
+                            th:src="@{${each_post.getVideo()}}">
+                    </iframe>
+                    <!--                    Video Frame End-->
+                    <!--                    VIDEO AND LOCATION PLACE-->
+                    <div class="post-container">
+                        <img alt="user" class="profile-photo-md pull-left"
+                             th:if="${each_post.getUser().id == userPrincipal.id or each_post.getUser().userPhotoVisibility == true or #lists.contains(friends, each_post.user)}"
+                             th:attr="src=${each_post.getUser().getUserPhotoAsString()}"/>
+                        <img alt="user" class="profile-photo-md pull-left"
+                             th:if="${each_post.getUser().userPhotoVisibility == false and each_post.getUser().id != userPrincipal.id and not #lists.contains(friends, each_post.user)}"
+                             th:src="@{/../../../../uploads/default_user_invisible_photo.jpg}"/>
+                        <div class="post-detail">
+                            <div class="user-info" >
+                                <div id="post_user_details">
+                                    <a th:if="${each_post.getUser().id == userPrincipal.id || each_post.getUser().nameVisibility == true || friends.contains(each_post.getUser())}"
+                                       th:href="@{/timeline-about.html/{id}(id=${each_post.getUser().id})}"
+                                       th:text='${#strings.concat(each_post.getUser().getFirstName()+" "+each_post.getUser().getLastName())}'
+                                       class="profile-link" style="font-family: 'Raleway', sans-serif; color: #27aae1; font-size: 14px; font-weight: 600;">Post User Name</a>
+                                    <a th:if="${each_post.getUser().id != userPrincipal.id && each_post.getUser().nameVisibility == false && !friends.contains(each_post.getUser())}"
+                                       th:href="@{/timeline-about.html/{id}(id=${each_post.getUser().id})}"
+                                       th:text='Unknown'
+                                       class="profile-link" style="font-family: 'Raleway', sans-serif; color: #27aae1; font-size: 14px; font-weight: 600;">Post User Name</a>
+                                    <span id="span_location" class="text-grey" th:if="${each_post.getLocation()!=''&& each_post.getLocation()!=null}"> has visited </span>
+                                    <span id="heading_location" th:if="${each_post.getLocation()!=''&& each_post.getLocation()!=null}" style="font-family: 'Raleway', sans-serif; color: #27aae1; font-size: 14px; font-weight: 600;"
+                                          th:text="${each_post.getLocation()}"></span>
+                                </div>
+                                <p class="text-muted"
+                                   th:text="${#strings.concat('Published at ', #dates.format(each_post.updateDate, 'dd-MM-yyyy / HH:mm '))}">Published time</p>
+                            </div>
+                            <div class="reaction" id="reaction_id" th:attr="data-id=${each_post.id}">
+                                <a th:id="'a-' + ${each_post.getId()}" class="btn text-green" th:data-id="${each_post.id}" onclick="createLikeToPost(this.getAttribute('data-id'))"><ion-icon name="heart" size="small"></ion-icon><span id="number_likes_post" th:text="${each_post.getPostsLikes().size()}"></span></a>
+                            </div>
+                            <div class="line-divider"></div>
+                            <div class="post-text">
+                                <ul class="publishing-tools list-inline">
+                                    <li th:id="'post1-content' + ${each_post.getId()}" th:text="${each_post.getContent()}" style="font-size: 14px; font-weight: 600;">Post Content</li>
+                                    <div id="post_update" th:if="${each_post.user.getId()==userPrincipal.id || #authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                         th:attr="data-id=${each_post.id}" style="float:right;">
+                                        <a th:id="'post-content-update' + ${each_post.getId()}" class="btn text-muted" th:attr="data-post-id=${each_post.getId()}" onclick="updatePostInThymeleaf(this.getAttribute('data-post-id'))"><ion-icon name="build" size="smaller" color="muted"></ion-icon></a>
+                                        <a class="btn text-muted" th:data-id="${each_post.id}" onclick="deletePosts(this.getAttribute('data-id'))"><i class="fa fa-trash-o"></i></a>
+                                    </div>
+                                </ul>
+                            </div>
+
+                            <!--Popup Start-->
+
+                            <div class="modal fade" id="updatePost" role="dialog" aria-labelledby="exampleModalLabel2"
+                                 aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel2">Update Post Form</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="update" >
+                                                <div class="col-7">
+
+                                                    <label for="post_content" th:text="'Post Content'">Post Content</label>
+                                                    <input type="text" id="post_content" class="form-control" name="post_content"
+                                                           th:value="${each_post.content}" autofocus required minlength="3" maxlength="255"/>
+                                                    <small class="text-muted">Must be 3-255 characters long.</small>
+                                                </div>
+                                                <br>
+                                                <div class="tools">
+                                                    <ul class="publishing-tools list-inline">
+                                                        <li><input type="file" accept="image/*" id="postPhotoUpdate" style="display:none"
+                                                                   name="photo"><a id="a_postPhotoUpdate"><i class="ion-images"></i></a>
+                                                            <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <br>
+                                                <div class="col-7">
+
+                                                    <label for="video_update">Video URL:</label>
+                                                    <input type="text" id="video_update" class="form-control" th:if="${each_post.getVideo()!=null}"
+                                                           th:value="${each_post.video}" autocomplete/>
+                                                    <input type="text" id="nonvideo_update" class="form-control" th:if="${each_post.getVideo()==null}"
+                                                           th:placeholder="'Write valid YouTube URL...'" autocomplete/>
+                                                    <small class="text-muted">Must be valid video URL.</small>
+                                                </div>
+                                                <br/>
+                                                <div class="col-7">
+                                                    <label for="location_update" >Post Location</label>
+                                                    <input type="text" id="location_update" class="form-control" name="location_update" th:if="${each_post.getLocation()!=null}"
+                                                           th:value="${each_post.getLocation()}" autocomplete/>
+<!--                                                    <input type="text" id="nonlocation_update" class="form-control" name="location_update" th:if="${each_post.getLocation()==null}"-->
+<!--                                                           th:placeholder="'Write your lovation...'" autocomplete/>-->
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-secondary" th:attr="data-comment-id=${each_post.id}" id="btn-update-post"
+                                                    data-dismiss="modal" onclick="updatePostData(this.getAttribute('data-comment-id'))"> Update
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Popup End-->
+
+                            <div class="line-divider"></div>
+                            <div></div>
+
+                            <div th:id="'delete-comment' + ${each_comment.getId()}" class="post-text" id="comment_div"
+                                 th:action="@{/newsfeed.html/{id}(id=${each_post.getId()})}" th:object="${comments}"
+                                 th:each="each_comment:${each_post.getComments()}"
+                                 th:if="${each_comment.getParentComment() == null && each_comment.isEnabled() == true}">
+                                <img alt="user" class="profile-photo-md pull-left"
+                                     th:if="${each_comment.getUser().id == userPrincipal.id or each_comment.getUser().userPhotoVisibility == true or #lists.contains(friends, each_comment.getUser())}"
+                                     th:attr="src=${each_comment.getUser().getUserPhotoAsString()}"/>
+                                <img alt="user" class="profile-photo-md pull-left"
+                                     th:if="${each_comment.getUser().id != userPrincipal.id and each_comment.getUser().userPhotoVisibility == false and not #lists.contains(friends, each_comment.getUser())}"
+                                     th:src="@{/../../../../uploads/default_user_invisible_photo.jpg}"/>
+                                <div class="post-text" onload="getCommentData()">
+                                    <p>
+                                        <a th:if="${each_comment.getUser().id == userPrincipal.id || each_comment.getUser().nameVisibility == true || friends.contains(each_comment.getUser())}"
+                                           th:href="@{/timeline-about.html/{id}(id=${each_comment.getUser().id})}"
+                                           th:text='${#strings.concat(each_comment.getUser().getFirstName()+" "+each_comment.getUser().getLastName())}'
+                                           class="profile-link" style="font-family: 'Raleway', sans-serif; color: #27aae1; font-size: 12px; font-weight: 600;">Comment User Name</a>
+                                        <a th:if="${each_comment.getUser().id != userPrincipal.id && each_comment.getUser().nameVisibility == false && !friends.contains(each_comment.getUser())}"
+                                           th:href="@{/timeline-about.html/{id}(id=${each_comment.getUser().id})}"
+                                           th:text='Unknown'
+                                           class="profile-link" style="font-family: 'Raleway', sans-serif; color: #27aae1; font-size: 12px; font-weight: 600;">Comment User Name</a>
+                                        <span th:id="'comment-content' + ${each_comment.getId()}" th:text="${each_comment.content}" ></span>
+<!--                                        <input th:id="'comment-update' + ${each_comment.getId()}" type="text" class="form-control" style="display: none" placeholder="Update a comment">-->
+                                    </p>
+                                    <div id="comment_update" th:if="${each_comment.user.getId()==userPrincipal.id || #authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                           style="float:left;" >
+                                        <a th:id="'comment-update' + ${each_comment.getId()}" class="btn text-muted" th:attr="data-comment-id=${each_comment.getId()}" onclick="updateParentComments(this.getAttribute('data-comment-id'))"><ion-icon name="build" size="smaller"></ion-icon></a>
+
+
+                                        <a class="btn text-muted" th:data-id="${each_comment.id}" onclick="deleteComments(this.getAttribute('data-id'))"><i class="fa fa-trash-o"></i></a>
+                                    </div>
+                                    <a th:id="'comment-likes' + ${each_comment.getId()}" class="btn text-green" style="padding-right: 1px" th:data-id="${each_comment.id}" onclick="createLikeToComment(this.getAttribute('data-id'))"><ion-icon name="heart" size="smaller"></ion-icon><span id="number_likes_comment" th:text="${each_comment.getCommentLikes().size()}"></span></a>
+
+                                </div>
+
+
+                                <div class="line-divider"></div>
+                                <!-- Child comments Start-->
+                                <div th:id="'delete-child-comment' + ${childComment.getId()}" th:object="${each_comment}" th:each="childComment:${each_comment.getComments()}" style="text-align: right" th:if="${childComment.isEnabled() == true}">
+
+                                    <img alt="user" class="profile-photo-md pull-right"
+                                         th:if="${childComment.getUser().id == userPrincipal.id or childComment.getUser().userPhotoVisibility == true or #lists.contains(friends, childComment.getUser())}"
+                                         th:attr="src=${childComment.getUser().getUserPhotoAsString()}"/>
+                                    <img alt="user" class="profile-photo-md pull-right"
+                                         th:if="${childComment.getUser().id != userPrincipal.id and childComment.getUser().userPhotoVisibility == false and not #lists.contains(friends, childComment.getUser())}"
+                                         th:src="@{/../../../../uploads/default_user_invisible_photo.jpg}"/>
+
+                                    <div class="post-text">
+                                        <p class="post-text">
+                                            <span th:id="'child-comment-content' + ${childComment.getId()}" th:text="${childComment.content}"></span>
+                                            <a th:if="${childComment.getUser().id == userPrincipal.id || childComment.getUser().nameVisibility == true || friends.contains(childComment.getUser())}"
+                                               th:href="@{/timeline-about.html/{id}(id=${childComment.getUser().id})}"
+                                               th:text='${#strings.concat(childComment.getUser().getFirstName()+" "+childComment.getUser().getLastName())}'
+                                               class="profile-link" style="font-family: 'Raleway', sans-serif; color: #27aae1; font-size: 12px; font-weight: 600;">Reply User Name</a>
+                                            <a th:if="${childComment.getUser().id != userPrincipal.id && childComment.getUser().nameVisibility == false && !friends.contains(childComment.getUser())}"
+                                               th:href="@{/timeline-about.html/{id}(id=${childComment.getUser().id})}"
+                                               th:text='Unknown'
+                                               class="profile-link" style="font-family: 'Raleway', sans-serif; color: #27aae1; font-size: 12px; font-weight: 600;">Reply User Name</a>
+                                        </p>
+                                        <div id="reply_update" th:if="${childComment.user.getId()==userPrincipal.id || #authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                             th:attr="data-id=${childComment.id}" style="float:right; padding-left: 25px">
+                                            <a class="btn text-muted" th:id="'child-comment-update' + ${each_comment.getId()}" th:attr="data-reply-id=${childComment.id}" onclick="updateChildComments(this.getAttribute('data-reply-id'))"><ion-icon name="build" size="smaller" color="muted"></ion-icon></a>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" th:id="update_reply" role="dialog"
+                                                 aria-labelledby="exampleModalLabel3"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel4">Update reply</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form id="update-reply">
+                                                                <div class="col-7">
+<!--                                                                    <label for="update-reply-content">Update reply</label>-->
+                                                                    <input type="text" th:id="${childComment.id} + 5000"
+                                                                           class="form-control" name="update_content"
+                                                                           form="update-reply"
+                                                                           th:value="${childComment.getContent()}" autofocus
+                                                                           autocomplete/>
+                                                                    <small class="text-muted">Must be 3-255 characters long.</small>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close
+                                                            </button>
+                                                            <button type="button" class="btn btn-secondary" id="btn-update-comment" th:attr="data-reply-id=${childComment.id}"
+                                                                    data-dismiss="modal"onclick="updateReplyData(this.getAttribute('data-reply-id'))">Update reply
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a class="btn text-muted" th:data-id="${childComment.id}" onclick="deleteChildComments(this.getAttribute('data-id'))"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                        <a th:id="'child-comment-likes' + ${childComment.getId()}" class="btn text-green" style="padding-right: 1px" th:data-id="${childComment.id}" onclick="createLikeToChildComment(this.getAttribute('data-id'))" ><ion-icon name="heart" size="smaller"></ion-icon><span id="number_likes_reply" th:text="${childComment.getCommentLikes().size()}"></span></a>
+
+                                    </div>
+                                    <div class="line-divider"></div>
+                                </div>
+                                <div class="post-comment">
+                                    <input th:id="'child-comment-create' + ${each_post.getId()}" th:post-user-id="${userPrincipal.getId()}" th:post-create-id="${each_post.getId()}" th:comment-user-id="${each_comment.getId()}"
+                                           onkeypress="if(event.key == 'Enter') {createChildCommentOnEnterHit(this.getAttribute('post-user-id'), this.getAttribute('post-create-id'), this.getAttribute('comment-user-id'))}"
+                                           contenteditable="true" type="text"  class="form-control" required minlength="3" maxlength="255" placeholder="Post a reply">
+                                    <img th:object="${userPrincipal}" th:attr="src=${userPrincipal.getUserPhotoAsString()}"
+                                         alt="" class="profile-photo-md pull-right"/>
+                                </div>
+                                <div class="line-divider"></div>
+                                <!-- Child comments End-->
+                            </div>
+
+                            <div class="post-comment">
+                                <img th:object="${userPrincipal}" th:attr="src=${userPrincipal.getUserPhotoAsString()}"
+                                     alt="" class="profile-photo-md"/>
+                                <input th:id="'parent-comment-create' + ${each_post.getId()}" th:post-user-id="${userPrincipal.getId()}" th:post-create-id="${each_post.getId()}"
+                                       onkeypress="if(event.key == 'Enter') {createParentCommentOnEnterHit(this.getAttribute('post-user-id'), this.getAttribute('post-create-id'))}"
+                                       contenteditable="true" type="text" class="form-control" required minlength="3" maxlength="255" placeholder="Post a comment">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a th:if="${count <= maxSize && currentCount > 3}" href="newsfeed.html/pageable" id="next-btn" type="submit" class="btn btn-primary pull-right">next</a>
+            </div>
+
+
+            <!-- Newsfeed Common Side Bar Right
+            ================================================= -->
+            <div class="col-md-2 static">
+                <div class="suggestions" id="sticky-sidebar">
+
+                    <!--                  HERE USERS WILL APPEAR AFTER SEARCH-->
+                    <div id="users"></div>
+
+                </div>
+                <h4 class="grey">Suggestions</h4>
+                <div class="follow-user" th:object="${nonFriends}" th:each="each_nonFriend:${nonFriends}">
+                    <img th:if="${each_nonFriend.id == userPrincipal.id || each_nonFriend.userPhotoVisibility == true}"
+                         th:attr="src=${each_nonFriend.getUserPhotoAsString()}" alt=""
+                         class="profile-photo-sm pull-left"/>
+                    <img th:if="${each_nonFriend.id != userPrincipal.id && each_nonFriend.userPhotoVisibility == false}"
+                         th:src="@{/../../../../uploads/default_user_invisible_photo.jpg}" alt=""
+                         class="profile-photo-sm pull-left"/>
+                    <div id="userId_request">
+                        <h5><a th:if="${each_nonFriend.id == userPrincipal.id || each_nonFriend.nameVisibility == true}"
+                               th:href="@{/timeline-about.html/{id}(id=${each_nonFriend.getId()})}"
+                               th:text='${#strings.concat(each_nonFriend.getFirstName()+" "+each_nonFriend.getLastName())}'>Non
+                            friend Name</a></h5>
+                        <h5>
+                            <a th:if="${each_nonFriend.id != userPrincipal.id && each_nonFriend.nameVisibility == false}"
+                               th:href="@{/timeline-about.html/{id}(id=${each_nonFriend.getId()})}"
+                               th:text='Unknown'>Non friend Name</a></h5>
+                        <a class="text-green" href="newsfeed.html" th:data-id="${each_nonFriend.id}" id="request_anchor"
+                           onclick="requestFriendship(this.getAttribute('data-id'))">Add friend</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer
+================================================= -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-wrapper">
+                <div class="col-md-3 col-sm-3">
+                    <a th:href="@{/index}"><img src="images/logo-black.png" alt="" class="footer-logo"/></a>
+                    <ul class="list-inline social-icons">
+                        <li><a href="https://www.facebook.com/"><i class="icon ion-social-facebook"></i></a></li>
+                        <li><a href="https://www.linkedin.com/"><i class="icon ion-social-linkedin"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-3" id="footer-contact">
+                    <h6>Contact Us</h6>
+                    <ul class="contact">
+                        <li><i class="icon ion-ios-telephone-outline"></i>+359 887 69 35 84 - Yavor Yankov +359 898 71
+                            70 03 - Tihomira Tacheva
+                        </li>
+                        <li><i class="icon ion-ios-email-outline"></i>yavoryankov83@gmail.com tihomira.tacheva@gmail.com
+                        </li>
+                        <li><i class="icon ion-ios-location-outline"></i>31 Alexander Malinov Blvd. Sofia 1729, Bulgaria
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright 2019 Tihomira Tacheva & Yavor Yankov Team. All rights reserved</p>
+    </div>
+</footer>
+
+<!--preloader-->
+<div id="spinner-wrapper">
+    <div class="spinner"></div>
+</div>
+
+<!-- Scripts
+================================================= -->
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/jquery.sticky-kit.min.js"></script>
+<script src="js/jquery.scrollbar.min.js"></script>
+<script src="js/script.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+</html>

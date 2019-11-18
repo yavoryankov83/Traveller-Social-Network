@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2019-11-12T01:33:29" hostname="yavor-Aspire-A715-72G" time="0.032">
+  <properties/>
+  <testcase name="get_all_comments_by_user_and_post_should_return_list_comments" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.001"/>
+  <testcase name="delete_comment_when_data_valid_without_parent" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.003"/>
+  <testcase name="get_comment_by_id_should_return_comment" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.003"/>
+  <testcase name="delete_comment_when_data_valid_with_parent" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.002"/>
+  <testcase name="get_all_comments_by_post_should_return_list_comments" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.001"/>
+  <testcase name="get_all_parent_comments_by_post_overload_should_return_list_comments" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.001"/>
+  <testcase name="should_throw_exception_create_comment_when_user_invalid" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.001"/>
+  <testcase name="should_throw_exception_create_comment_when_post_invalid" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.003"/>
+  <testcase name="update_comment_when_data_valid" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.001"/>
+  <testcase name="get_all_parent_comments_by_post_should_return_list_comments" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.001"/>
+  <testcase name="get_all_child_comments_by_parent_comment_should_return_list_comments" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.008"/>
+  <testcase name="create_comment_when_data_valid" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.002"/>
+  <testcase name="should_throw_exception_create_comment_when_content_invalid" classname="com.telerikacademy.socialnetwork.services.CommentServiceImplTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

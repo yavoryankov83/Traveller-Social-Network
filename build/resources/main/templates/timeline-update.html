@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="This is social network html5 template available in themeforest......"/>
+    <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page"/>
+    <meta name="robots" content="index, follow"/>
+    <title>About Me | Learn Detail About Me</title>
+
+    <!-- Stylesheets
+    ================================================= -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <base href="/">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/ionicons.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <!--Google Webfont-->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,300italic,400italic,500,500italic,600,600italic,700'
+          rel='stylesheet' type='text/css'>
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+</head>
+<body>
+
+<!-- Header
+================================================= -->
+<header id="header" class="lazy-load">
+    <nav class="navbar navbar-default navbar-fixed-top menu">
+        <div class="container">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/index}"><img src="images/logo.png" alt="logo"/></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right main-menu">
+                    <li class="dropdown"><a th:href="@{/index}">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Newsfeed <span><img src="images/down-arrow.png" alt=""/></span></a>
+                        <ul class="dropdown-menu newsfeed-home">
+                            <li><a sec:authorize="hasRole('ROLE_USER')" href="newsfeed.html">Newsfeed</a></li>
+                            <li><a sec:authorize="hasRole('ROLE_USER')" href="newsfeed-images.html">Images</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a th:href="@{/friends}">My friends</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"> My Profile <span><img src="images/down-arrow.png" alt=""/></span></a>
+                        <ul class="dropdown-menu login">
+                            <li><a th:href="@{/timeline-about.html/{id}(id = ${userPrincipal.id})}">My info</a></li>
+                            <li><a th:href="@{/timeline-album.html/{id}(id = ${userPrincipal.id})}">My Albums</a></li>
+                            <li><a th:href="@{/friends}">My Friends</a></li>
+                        </ul>
+                    </li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a th:href="@{/admin}">Admin</a></li>
+                    <li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a th:href="@{/logout}">Logout</a></li>
+                </ul>
+                <form class="navbar-form navbar-right hidden-sm">
+                    <div class="form-group">
+                        <i class="icon ion-android-search"></i>
+                        <input id="input" class="form-control js-user-search" autocomplete
+                               placeholder="Search here people ..." type="text">
+                    </div>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+</header>
+<!--Header End-->
+
+<div class="container">
+
+    <!-- Timeline
+    ================================================= -->
+    <div class="timeline" th:object="${user}">
+        <div id="user-cover" th:object="${user}" th:user-cover="${user.getCoverPhotoAsString()}"></div>
+        <div id="cover" class="timeline-cover">
+
+            <!--Timeline Menu for Large Screens-->
+            <div class="timeline-nav-bar hidden-sm hidden-xs">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="profile-info">
+                            <img th:attr="src=${user.getUserPhotoAsString()}" alt=""
+                                 class="img-responsive profile-photo"/>
+                            <h4 th:text="${#strings.concat(user.getFirstName()+' '+user.getLastName()+' ('+user.username+')')}"></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="list-inline profile-menu">
+                            <li><a th:href="@{/timeline-about.html/{id}(id=${user.id})}" class="active">About</a></li>
+                            <li><a th:href="@{/timeline-album.html/{id}(id=${user.id})}">Album</a></li>
+                            <li><a th:href="@{/friends}">Friends</a></li>
+                            <li><a id="deleteUser" href="#">Delete profile</a></li>
+
+                        </ul>
+                        <ul class="follow-me list-inline">
+                            <li th:text="${friendsCount} + ' people following'"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!--Timeline Menu for Large Screens End-->
+
+            <!--Timeline Menu for Small Screens-->
+            <div class="navbar-mobile hidden-lg hidden-md">
+                <div class="profile-info">
+                    <img th:attr="src=${user.getUserPhotoAsString()}" alt="" class="img-responsive profile-photo"/>
+                    <h4 th:text="${#strings.concat(user.getFirstName()+' '+user.getLastName()+' ('+user.username+')')}"></h4>
+                </div>
+                <div class="mobile-menu">
+                    <ul class="list-inline">
+                        <li><a th:href="@{/timeline-about.html/{id}(id=${user.id})}" class="active">About</a></li>
+                        <li><a th:href="@{/timeline-album.html/{id}(id=${user.id})}">Album</a></li>
+                        <li><a th:href="@{/friends}">Friends</a></li>
+                    </ul>
+                    <ul class="follow-me list-inline">
+                        <li th:text="${friendsCount} + ' people following'"></li>
+                    </ul>
+                </div>
+            </div><!--Timeline Menu for Small Screens End-->
+
+        </div>
+        <div id="page-contents">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-7">
+
+                    <!-- About
+                    ================================================= -->
+                    <div class="about-profile">
+                        <div class="about-content-block">
+                            <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i> My Personal
+                                Information</h4>
+                            <div class="organization">
+                                <form id="update" th:action="@{/timeline-update.html/{id}(id=${user.id})}"
+                                      th:object="${user}" enctype="multipart/form-data"
+                                      method="post">
+
+                                    <div hidden="hidden">
+                                        <label for="id"><i class="fa fa-user"></i> Id</label>
+                                        <small class="text-danger">* required</small>
+                                        <input type="text" id="id" class="form-control rounded-pill" th:field="*{id}"
+                                               name="id"
+                                               th:placeholder="id" required/>
+                                    </div>
+
+                                    <div hidden="hidden">
+                                        <label for="username" class="text-danger" th:errors="*{username}"
+                                               th:text="#{user.invalidUsername}">Invalid Username</label>
+                                        <label for="username"><i class="fa fa-user"></i> Username</label>
+                                        <small class="text-danger" style="text-align: right">* required</small>
+                                        <input type="text" id="username" class="form-control rounded-pill"
+                                               th:field="*{username}"
+                                               name="username"
+                                               th:placeholder="Username" autocomplete autofocus required minlength="3"/>
+                                        <small class="text-muted" th:text="#{user.Username.validity}">Must be at least 3
+                                            characters
+                                            long</small>
+                                    </div>
+
+                                    <div>
+                                        <label for="email" class="text-danger" th:errors="*{email}"
+                                               th:text="#{user.invalidEmail}">Email
+                                            error</label>
+                                        <label for="email"><i class="fa fa-email"></i> Email</label>
+                                        <small class="text-danger">* required</small>
+                                        <input type="email" id="email" class="form-control rounded-pill"
+                                               th:field="*{email}" name="email"
+                                               th:placeholder="Email" th:autocomplete="off" minlength="3" maxlength="50"
+                                               required/>
+                                    </div>
+
+                                    <div>
+                                        <label for="password" class="text-danger" th:errors="*{password}"
+                                               th:text="#{user.invalidPassword}">Password error</label>
+                                        <label for="password"><i class="fa fa-key icon"></i> Password</label>
+                                        <small class="text-danger">* required</small>
+                                        <input type="password" id="password" class="form-control rounded-pill"
+                                               th:field="*{password}"
+                                               name="password" th:placeholder="Password" th:autocomplete="off" required
+                                               minlength="3"/>
+                                        <small class="text-muted" th:text="#{user.Password.validity}">Must be at least 3
+                                            characters
+                                            long</small>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" onclick="showHiddenPassword()">
+                                    </label>Show Password
+                                    <br/>
+
+                                    <div>
+                                        <label for="confirmPassword"><i class="fa fa-key icon"></i> Confirm
+                                            Password</label>
+                                        <small class="text-danger">* required</small>
+                                        <input type="password" id="confirmPassword" class="form-control rounded-pill"
+                                               th:field="*{passwordConfirmation}"
+                                               name="confirmPassword" th:placeholder="Password" th:autocomplete="off"
+                                               required
+                                               minlength="3"/>
+                                        <small class="text-muted" th:text="#{user.Password.validity}">Must be at least 3
+                                            characters
+                                            long</small>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" onclick="showHiddenPasswordConfirmation()">
+                                    </label>Show Password Confirmation
+                                    <br/>
+
+                                    <div>
+                                        <label for="firstName" class="text-danger" th:errors="*{firstName}"
+                                               th:text="#{user.invalidfirstName}">Invalid First name</label>
+                                        <label for="firstName"><i class="fa fa-user"></i> First name</label>
+                                        <small class="text-danger">* required</small>
+                                        <select id="name" th:field="*{nameVisibility}">
+                                            <option th:value="true" th:text="PUBLIC">PUBLIC</option>
+                                            <option th:value="false" th:text="PRIVATE">PRIVATE</option>
+                                        </select>
+                                        <input type="text" id="firstName" class="form-control rounded-pill"
+                                               th:field="*{firstName}" name="firstName" placeholder="First name"
+                                               th:autocomplete="off"
+                                               minlength="3" maxlength="50" required/>
+                                        <small class="text-muted" th:text="#{user.firstName.validity}">Must be between 3
+                                            and 50 characters long</small>
+                                    </div>
+
+                                    <div><label for="lastName" class="text-danger" th:errors="*{lastName}"
+                                                th:text="#{user.invalidlastName}">Invalid Last name</label>
+                                        <label for="lastName"><i class="fa fa-user"></i> Last name</label>
+                                        <small class="text-danger">* required</small>
+                                        <input type="text" id="lastName" class="form-control rounded-pill"
+                                               th:field="*{lastName}" name="lastName" placeholder="Last name"
+                                               th:autocomplete="off"
+                                               minlength="3" maxlength="50" required/>
+                                        <small class="text-muted" th:text="#{user.lastName.validity}">Must be at between
+                                            3 and 50 characters long</small>
+
+                                    </div>
+                                    <div>
+                                        <label for="userPhoto" style="cursor: pointer"><i class="fa fa-photo"></i>
+                                            UPLOAD your personal photo</label>
+                                        <select id="photo" th:field="*{userPhotoVisibility}">
+                                            <option th:value="true" th:text="PUBLIC">PUBLIC</option>
+                                            <option th:value="false" th:text="PRIVATE">PRIVATE</option>
+                                        </select>
+                                        <fieldset hidden="hidden">
+                                            <input type="file" accept="image/*" class="form-control rounded-pill"
+                                                   id="userPhoto" name="photo" placeholder="User photo"/>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+                                        </fieldset>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="coverPhoto" style="cursor: pointer"><i class="fa fa-photo"></i>
+                                            UPLOAD your cover photo</label>
+                                        <fieldset hidden="hidden">
+                                            <input type="file" accept="image/*" class="form-control rounded-pill"
+                                                   id="coverPhoto" name="cover" placeholder="Cover photo"/>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+                                        </fieldset>
+                                    </div>
+                                    <br/>
+                                    <button type="submit" form="update" class="btn-block btn-black rounded-pill"
+                                            value="Update profile">
+                                        <i class="fa fa-lock"></i> Update profile
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 static">
+                    <div class="suggestions" id="sticky-sidebar">
+                        <!--                  HERE USERS WILL APPEAR AFTER SEARCH-->
+                        <div id="users"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer
+================================================= -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-wrapper">
+                <div class="col-md-3 col-sm-3">
+                    <a th:href="@{/index}"><img src="images/logo-black.png" alt="" class="footer-logo"/></a>
+                    <ul class="list-inline social-icons">
+                        <li><a href="https://www.facebook.com/"><i class="icon ion-social-facebook"></i></a></li>
+                        <li><a href="https://www.linkedin.com/"><i class="icon ion-social-linkedin"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h6>Contact Us</h6>
+                    <ul class="contact">
+                        <li><i class="icon ion-ios-telephone-outline"></i>+359 887 69 35 84 - Yavor Yankov +359 898 71
+                            70 03 - Tihomira Tacheva
+                        </li>
+                        <li><i class="icon ion-ios-email-outline"></i>yavoryankov83@gmail.com tihomira.tacheva@gmail.com
+                        </li>
+                        <li><i class="icon ion-ios-location-outline"></i>31 Alexander Malinov Blvd. Sofia 1729, Bulgaria
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright 2019 Tihomira Tacheva & Yavor Yankov Team. All rights reserved</p>
+    </div>
+</footer>
+
+<!--preloader-->
+<div id="spinner-wrapper">
+    <div class="spinner"></div>
+</div>
+
+<!-- Scripts
+================================================= -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.appear.min.js"></script>
+<script src="js/jquery.incremental-counter.js"></script>
+<script src="js/script.js"></script>
+<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+</body>
+</html>

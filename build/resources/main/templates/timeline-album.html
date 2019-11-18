@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="This is social network html5 template available in themeforest......" />
+  <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+  <meta name="robots" content="index, follow" />
+  <title>About Me | Learn Detail About Me</title>
+
+  <!-- Stylesheets
+  ================================================= -->
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+  <base href="/">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/ionicons.min.css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" />
+  <!--Google Webfont-->
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,300italic,400italic,500,500italic,600,600italic,700' rel='stylesheet' type='text/css'>
+  <!--Favicon-->
+  <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+</head>
+<body>
+
+<!-- Header
+================================================= -->
+<header id="header">
+  <nav class="navbar navbar-default navbar-fixed-top menu">
+    <div class="container">
+
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" th:href="@{/index}"><img src="images/logo.png" alt="logo"/></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right main-menu">
+          <li class="dropdown"><a th:href="@{/index}">Home</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Newsfeed <span><img src="images/down-arrow.png" alt=""/></span></a>
+            <ul class="dropdown-menu newsfeed-home">
+              <li><a sec:authorize="hasRole('ROLE_USER')" href="newsfeed.html">Newsfeed</a></li>
+              <li><a sec:authorize="hasRole('ROLE_USER')" href="newsfeed-images.html">Images</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a th:href="@{/friends}">My friends</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false"> My Profile <span><img src="images/down-arrow.png" alt=""/></span></a>
+            <ul class="dropdown-menu login">
+              <li><a th:href="@{/timeline-about.html/{id}(id = ${userPrincipal.id})}">My info</a></li>
+              <li><a th:href="@{/timeline-album.html/{id}(id = ${userPrincipal.id})}">My Albums</a></li>
+              <li><a th:href="@{/friends}">My Friends</a></li>
+            </ul>
+          </li>
+          <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a th:href="@{/admin}">Admin</a></li>
+          <li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+        <form class="navbar-form navbar-right hidden-sm">
+          <div class="form-group">
+            <i class="icon ion-android-search"></i>
+            <input id="input" class="form-control js-user-search" autocomplete placeholder="Search here people ..." type="text">
+          </div>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav>
+</header>
+<!--Header End-->
+
+    <div class="container">
+
+      <!-- Timeline
+      ================================================= -->
+      <div class="timeline" th:object="${user}">
+        <div id="user-cover" th:object="${user}" th:user-cover="${user.getCoverPhotoAsString()  }"></div>
+        <div id="cover" class="timeline-cover">
+
+          <!--Timeline Menu for Large Screens-->
+          <div  class="timeline-nav-bar hidden-sm hidden-xs">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="profile-info">
+                  <img th:attr="src=${user.getUserPhotoAsString()}" alt="" class="img-responsive profile-photo" />
+                  <h4 th:text="${#strings.concat(user.getFirstName()+' '+user.getLastName()+' ('+user.username+')')}"></h4>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <ul class="list-inline profile-menu">
+                  <li><a th:href="@{/timeline-about.html/{id}(id=${user.id})}" class="active">About</a></li>
+                  <li><a th:href="@{/friends}">Friends</a></li>
+                  <li><a th:if="${user.id == userPrincipal.id }" id="updateUser" th:href="@{/timeline-update.html/{id}(id=${user.id})}">Update profile</a></li>
+                  <li>
+                    <form id="deleteUserProfile" hidden th:action="@{/timeline-about.html/delete/{id}(id=${user.id})}" method = "post">
+                      <button id="buttonDelete" type="submit" form="deleteUserProfile" class="btn btn-primary pull-right">Delete profile</button>
+                    </form>
+                  </li>
+                  <li><a th:if="${user.id == userPrincipal.id}" id="deleteUser" th:href="@{/timeline-about.html/delete/{id}(id=${user.id})}">Delete profile</a></li>
+                </ul>
+                <ul class="follow-me list-inline">
+                  <li th:text="${friendsCount} + ' people following'"> </li>
+                </ul>
+              </div>
+            </div>
+          </div><!--Timeline Menu for Large Screens End-->
+
+          <!--Timeline Menu for Small Screens-->
+          <div class="navbar-mobile hidden-lg hidden-md">
+            <div class="profile-info">
+              <img th:attr="src=${user.getUserPhotoAsString()}" alt="" class="img-responsive profile-photo" />
+              <h4 th:text="${#strings.concat(user.getFirstName()+' '+user.getLastName()+' ('+user.username+')')}"></h4>
+            </div>
+            <div class="mobile-menu">
+              <ul class="list-inline">
+                <li><a th:href="@{/timeline-about.html/{id}(id=${user.id})}" class="active">About</a></li>
+                <li><a th:href="@{/timeline-album.html/{id}(id=${user.id})}">Album</a></li>
+                <li><a th:href="@{/friends}">Friends</a></li>
+              </ul>
+              <ul class="follow-me list-inline">
+                <li th:text="${friendsCount} + ' people following'"> </li>
+              </ul>
+            </div>
+          </div><!--Timeline Menu for Small Screens End-->
+
+        </div>
+        <div id="page-contents">
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-7">
+
+              <!-- Photo Album
+              ================================================= -->
+              <ul class="album-photos" th:object="${user}">
+                <li>
+                  <div class="img-wrapper" data-toggle="modal" data-target=".userPhoto">
+                    <img th:attr="src=${user.getUserPhotoAsString()}" alt="photo"/>
+                  </div>
+                  <div class="modal fade userPhoto" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <img th:attr="src=${user.getUserPhotoAsString()}" alt="photo" />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="img-wrapper" data-toggle="modal" data-target=".userCoverPhoto">
+                    <img th:attr="src=${user.getCoverPhotoAsString()}" alt="photo"/>
+                  </div>
+                  <div class="modal fade userCoverPhoto" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <img th:attr="src=${user.getCoverPhotoAsString()}" alt="photo" />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li th:object="${posts}" th:each="post:${posts}">
+                  <div class="img-wrapper" data-toggle="modal" data-target=".posts">
+                    <img th:if="${#strings.toString(post.getPostPhotoAsString())}!='/uploads/default_post_photo.jpg'"
+                         th:attr="src=${post.getPostPhotoAsString()}" alt="photo"/>
+                  </div>
+                  <div class="modal fade posts" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <img th:attr="src=${post.getPostPhotoAsString()}" alt="photo" />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-2 static">
+              <div id="sticky-sidebar">
+                <div id="users"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Footer
+================================================= -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-wrapper">
+        <div class="col-md-3 col-sm-3">
+          <a th:href="@{/index}"><img src="images/logo-black.png" alt="" class="footer-logo"/></a>
+          <ul class="list-inline social-icons">
+            <li><a href="https://www.facebook.com/"><i class="icon ion-social-facebook"></i></a></li>
+            <li><a href="https://www.linkedin.com/"><i class="icon ion-social-linkedin"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <h6>Contact Us</h6>
+          <ul class="contact">
+            <li><i class="icon ion-ios-telephone-outline"></i>+359 887 69 35 84 - Yavor Yankov +359 898 71
+              70 03 - Tihomira Tacheva
+            </li>
+            <li><i class="icon ion-ios-email-outline"></i>yavoryankov83@gmail.com tihomira.tacheva@gmail.com
+            </li>
+            <li><i class="icon ion-ios-location-outline"></i>31 Alexander Malinov Blvd. Sofia 1729, Bulgaria
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>Copyright 2019 Tihomira Tacheva & Yavor Yankov Team. All rights reserved</p>
+  </div>
+</footer>
+
+<!--preloader-->
+<div id="spinner-wrapper">
+  <div class="spinner"></div>
+</div>
+
+<!-- Scripts
+================================================= -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.appear.min.js"></script>
+<script src="js/jquery.incremental-counter.js"></script>
+<script src="js/script.js"></script>
+<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+</body>
+</html>

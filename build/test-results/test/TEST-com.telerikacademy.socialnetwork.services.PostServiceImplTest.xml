@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.telerikacademy.socialnetwork.services.PostServiceImplTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2019-11-12T01:33:29" hostname="yavor-Aspire-A715-72G" time="0.049">
+  <properties/>
+  <testcase name="get_all_public_posts_should_return_list_public_posts" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.005"/>
+  <testcase name="get_post_by_id_should_return_post" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <testcase name="get_all_public_posts_should_return_list_public_posts_overload" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <testcase name="create_post_when_data_valid" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <testcase name="get_post_by_id_when_post_not_exists" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.001"/>
+  <testcase name="get_posts_by_user_overload_should_return_list_of_post" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <testcase name="get_posts_by_user_should_return_list_of_post" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.001"/>
+  <testcase name="throw_exception_update_post_when_post_invalid" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <testcase name="get_all_posts_visible_by_principal_null_should_throw_exception" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.001"/>
+  <testcase name="update_post_when_data_valid" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <testcase name="throw_exception_create_post_with_invalid_content" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.001"/>
+  <testcase name="get_all_posts_should_return_list_of_posts" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.0"/>
+  <testcase name="get_post_by_id_should_return_exception" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.001"/>
+  <testcase name="throw_exception_create_post_with_invalid_user" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <testcase name="get_all_posts_visible_by_principal_should_return_list_of_post_overload" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.003"/>
+  <testcase name="delete_post_when_data_valid" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <testcase name="throw_exception_create_post_when_post_exists" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <testcase name="get_all_posts_visible_by_principal_should_return_list_of_post" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.004"/>
+  <testcase name="filter_posts_by_username_email_firstName_lastName" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <testcase name="get_all_public_postsDTO_return_list_postDTO" classname="com.telerikacademy.socialnetwork.services.PostServiceImplTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

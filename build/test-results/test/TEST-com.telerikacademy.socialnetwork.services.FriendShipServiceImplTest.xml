@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" tests="28" skipped="0" failures="0" errors="0" timestamp="2019-11-12T01:33:29" hostname="yavor-Aspire-A715-72G" time="0.055">
+  <properties/>
+  <testcase name="has_principal_requests_should_return_boolean" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.003"/>
+  <testcase name="get_all_friends_of_invalid_user_should_throw_exception" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.002"/>
+  <testcase name="have_users_friendfhip_with_status_friends_should_return_boolean" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.002"/>
+  <testcase name="get_friendship_should_return_friendfhip" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.002"/>
+  <testcase name="get_all_friends_of_principal_should_return_list_of_friendships_with_status_accepted_friend" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.002"/>
+  <testcase name="have_users_friendfhip_with_any_status_should_return_boolean" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="get_if_relation_exists_should_return_friendfhip" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.002"/>
+  <testcase name="accept_friendship_request_when_data_valid" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="block_friendship_when_data_valid" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.004"/>
+  <testcase name="unblock_friendship_when_data_valid" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="update_friendShip_request_when_data_valid" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.002"/>
+  <testcase name="update_invalid_friendShip_request_should_throw_exception" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="have_users_friendfhip_with_any_status_should_return_false" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="get_all_nonFriends_should_return_list_of_userd_without_relation1" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="get_all_requests_of_principal_should_return_list_of_friendships_with_status_pending" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.002"/>
+  <testcase name="get_all_nonFriends_should_return_list_of_userd_without_relation" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="did_principal_block_user_should_return_true" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="have_users_friendfhip_with_status_friends_should_return_false" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="unblock_friendship_with_invalid_principal_should_throw_exception" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="has_principal_requests_should_return_false" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="send_FriendShip_request_when_data_valid" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="send_friendShip_request_to_existing_friendShip_should_throw_exception" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="did_principal_block_user_should_return_boolean" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="reject_friendship_request_when_data_valid" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.0"/>
+  <testcase name="get_all_friends_of_user_should_return_list_of_friendships_with_status_accepted_friend" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="block_friendship_should_throw_exception" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <testcase name="get_all_user_friendShips_should_return_list_of_friendships" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.002"/>
+  <testcase name="did_principal_block_user_should_return_false" classname="com.telerikacademy.socialnetwork.services.FriendShipServiceImplTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.telerikacademy.socialnetwork.services.UserServiceImplTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2019-11-12T01:33:29" hostname="yavor-Aspire-A715-72G" time="0.203">
+  <properties/>
+  <testcase name="throw_exception_create_user_when_password_notMatch" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.151"/>
+  <testcase name="throw_exception_update_user_when_email_exists" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.004"/>
+  <testcase name="get_principal_should_return_user" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.001"/>
+  <testcase name="throw_exception_update_user_when_email_invalid" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.002"/>
+  <testcase name="get_all_users_should_return_list_of_users" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.002"/>
+  <testcase name="delete_user_when_data_valid" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.006"/>
+  <testcase name="throw_exception_create_user_when_email_exists" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.002"/>
+  <testcase name="throw_exception_create_user_when_email_invalid" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.003"/>
+  <testcase name="throw_exception_create_user_when_passwordConfirmation_invalid" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.004"/>
+  <testcase name="throw_exception_when_get_invalid_principal" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.002"/>
+  <testcase name="get_user_by_id_should_return_user" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.001"/>
+  <testcase name="filter_by_username_email_firstName_lastName" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.002"/>
+  <testcase name="throw_exception_create_user_when_username_invalid" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.003"/>
+  <testcase name="get_user_by_username_should_return_user" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.003"/>
+  <testcase name="throw_exception_create_user_when_user_exists" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.004"/>
+  <testcase name="throw_exception_create_user_when_password_invalid" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.002"/>
+  <testcase name="get_all_users_pageable_should_return_list_of_users" classname="com.telerikacademy.socialnetwork.services.UserServiceImplTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

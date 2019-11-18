@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="This is social network for travellers."/>
+    <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page"/>
+    <meta name="robots" content="index, follow"/>
+    <title>Your Friend List</title>
+
+    <!-- Stylesheets
+================================================= -->
+    <base href="/">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/ionicons.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+
+    <!--Google Webfont-->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,300italic,400italic,500,500italic,600,600italic,700'
+          rel='stylesheet' type='text/css'>
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Header
+================================================= -->
+<header id="header">
+    <nav class="navbar navbar-default navbar-fixed-top menu">
+        <div class="container">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/index}"><img src="images/logo.png" alt="logo"/></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right main-menu">
+                    <li class="dropdown"><a th:href="@{/index}">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Newsfeed <span><img src="images/down-arrow.png" alt=""/></span></a>
+                        <ul class="dropdown-menu newsfeed-home">
+                            <li><a sec:authorize="hasRole('ROLE_USER')" href="newsfeed.html">Newsfeed</a></li>
+                            <li><a sec:authorize="hasRole('ROLE_USER')" href="newsfeed-images.html">Images</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a th:href="@{/friends}">My friends</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"> My Profile <span><img src="images/down-arrow.png" alt=""/></span></a>
+                        <ul class="dropdown-menu login">
+                            <li><a th:href="@{/timeline-about.html/{id}(id = ${userPrincipal.id})}">My info</a></li>
+                            <li><a th:href="@{/timeline-album.html/{id}(id = ${userPrincipal.id})}">My Albums</a></li>
+                            <li><a th:href="@{/friends}">My Friends</a></li>
+                        </ul>
+                    </li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a th:href="@{/admin}">Admin</a></li>
+                    <li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a th:href="@{/logout}">Logout</a></li>
+
+                </ul>
+                <form class="navbar-form navbar-right hidden-sm">
+                    <div class="form-group">
+                        <i class="icon ion-android-search"></i>
+                        <input id="input" class="form-control js-user-search" placeholder="Search here people ..." type="text">
+                    </div>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+</header>
+<!--Header End-->
+
+<div id="page-contents" sec:authorize="isAuthenticated()">
+    <div class="container">
+        <div class="row">
+
+            <!-- Newsfeed Common Side Bar Left
+      ================================================= -->
+            <div class="col-md-3 static">
+                <div class="profile-card" th:action="@{/friends}" th:object="${userPrincipal}">
+                    <img th:attr="src=${userPrincipal.getUserPhotoAsString()}" alt="user" class="profile-photo"/>
+                    <h5><a th:href="@{/timeline-about.html/{id}(id = ${userPrincipal.id})}"
+                           th:text='${#strings.concat(userPrincipal.getFirstName()+" "+userPrincipal.getLastName())}'
+                           class="text-white">Principal Name</a></h5>
+                    <a th:href="@{/friends}" class="text-white" th:text='${#strings.concat(friendsCount)+" friends"}'><i
+                            class="ion ion-android-person-add"></i> Count friends</a>
+                </div><!--profile card ends-->
+                <ul class="nav-news-feed">
+                    <li>
+                        <div>
+                            <ion-icon name="paper" size="small" color="success"></ion-icon>
+                            <a th:href="@{/timeline-about.html/{id}(id = ${userPrincipal.id})}"> My Newsfeed</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <ion-icon name="contacts" size="small" color="primary"></ion-icon>
+                            <a th:href="@{/friends}"> Friends</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <ion-icon name="images" size="small" color="danger"></ion-icon>
+                            <a href="newsfeed-images.html"> Images</a>
+                        </div>
+                    </li>
+                </ul><!--news-feed links ends-->
+            </div>
+            <div class="col-md-7">
+
+                <!-- Post Create Box
+                ================================================= -->
+                <div class="create-post" th:object="${newPost}">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-7">
+                            <div class="form-group">
+                                <img th:object="${userPrincipal}" th:attr="src=${userPrincipal.getUserPhotoAsString()}"
+                                     alt="" class="profile-photo-md"/>
+                                <label for="exampleTextarea">
+                                    <textarea name="texts" th:field="*{content}" form="createPost" id="exampleTextarea"
+                                              maxlength="255" cols="30" rows="3" class="form-control"
+                                              placeholder="Write your post..."></textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <form id="createPost" th:action="@{/newsfeed.html/create}" method="POST"
+                                  th:object="${newPost}" enctype="multipart/form-data">
+                                <div></div>
+                                <div class="tools">
+                                    <ul class="publishing-tools list-inline">
+                                        <li><input type="file" accept="image/*" id="postPhoto" style="display:none"
+                                                   name="photo"><a id="a_postPhoto"><ion-icon name="images" size="small"></ion-icon></a>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+                                        </li>
+
+                                        <!-- Button trigger modal -->
+                                        <li><input type="button" data-toggle="modal" data-target="#video" id="postVideo"
+                                                   style="display:none"><a id="a_postVideo">
+                                            <ion-icon name="videocam" size="small"></ion-icon></a></li>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="video" role="dialog"
+                                             aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Add URL address
+                                                            of video</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="col-7">
+                                                            <label for="video-name">Video URL</label>
+                                                            <input type="text" id="video-name" th:field="*{video}"
+                                                                   class="form-control" name="video" form="createPost"
+                                                                   th:placeholder="'video' + ' URL'" autofocus
+                                                                   autocomplete/>
+                                                            <small class="text-muted">Must be URL address.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Add video
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Button trigger modal -->
+                                        <li><input type="button" data-toggle="modal" data-target="#location"
+                                                   id="postLocation" style="display:none"><a id="a_postLocation">
+                                            <ion-icon name="pin" size="small"></ion-icon></a></li>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="location" role="dialog"
+                                             aria-labelledby="exampleModalLabel1"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Add location
+                                                            address</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="col-7">
+                                                            <label for="location-name">Location address</label>
+                                                            <input type="text" id="location-name" th:field="*{location}"
+                                                                   class="form-control" name="location"
+                                                                   form="createPost"
+                                                                   th:placeholder="'Location' + ' address'" autofocus
+                                                                   autocomplete/>
+                                                            <small class="text-muted">Must be location address.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Add location
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    <button id="publish_post" type="submit" form="createPost"
+                                            class="btn btn-primary pull-right">Publish
+                                    </button>
+                                </div>
+                                <div id="visiblePost">
+                                    <label for="createPost"><select id="post" th:field="*{visible}">
+                                        <option th:value="true" th:text="Public">Public</option>
+                                        <option th:value="false" th:text="Private">Private</option>
+                                    </select></label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- Post Create Box End -->
+
+                <!-- Friend List
+                ================================================= -->
+                <div class="friend-list" th:object="${friends}" th:each="each_friend:${friends}">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="friend-card">
+                                <img th:attr="src=${each_friend.getCoverPhotoAsString()}" alt="profile-cover"
+                                     class="img-responsive cover"/>
+                                <div class="card-info">
+                                    <img th:attr="src=${each_friend.getUserPhotoAsString()}" alt="user"
+                                         class="profile-photo-lg"/>
+                                    <div class="friend-info">
+                                        <a th:href="@{/timeline-about.html/{id}(id=${each_friend.id})}"
+                                           class="pull-right text-green">My Friend</a>
+                                        <h5><a th:href="@{/timeline-about.html/{id}(id=${each_friend.id})}"
+                                               th:text='${#strings.concat(each_friend.getFirstName()+" "+each_friend.getLastName())}'
+                                               class="profile-link">Friend Name</a></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsfeed Common Side Bar Right
+      ================================================= -->
+            <div class="col-md-2 static">
+                <div class="suggestions" id="sticky-sidebar">
+
+                            <!--                  HERE USERS WILL APPEAR AFTER SEARCH-->
+                            <div id="users"></div>
+
+                    </div>
+                    <h4 class="grey">Suggestions</h4>
+                    <div class="follow-user" th:object="${nonFriends}" th:each="each_nonFriend:${nonFriends}">
+                        <img th:if="${each_nonFriend.id == userPrincipal.id || each_nonFriend.userPhotoVisibility == true}"
+                             th:attr="src=${each_nonFriend.getUserPhotoAsString()}" alt=""
+                             class="profile-photo-sm pull-left"/>
+                        <img th:if="${each_nonFriend.id != userPrincipal.id && each_nonFriend.userPhotoVisibility == false}"
+                             th:src="@{/../../../../uploads/default_user_invisible_photo.jpg}" alt=""
+                             class="profile-photo-sm pull-left"/>
+                        <div id="userId_request">
+                            <h5>
+                                <a th:if="${each_nonFriend.id == userPrincipal.id || each_nonFriend.nameVisibility == true}"
+                                   th:href="@{/timeline-about.html/{id}(id=${each_nonFriend.getId()})}"
+                                   th:text='${#strings.concat(each_nonFriend.getFirstName()+" "+each_nonFriend.getLastName())}'>Non
+                                    friend Name</a></h5>
+                            <h5>
+                                <a th:if="${each_nonFriend.id != userPrincipal.id && each_nonFriend.nameVisibility == false}"
+                                   th:href="@{/timeline-about.html/{id}(id=${each_nonFriend.getId()})}"
+                                   th:text='Unknown'>Non friend Name</a></h5>
+                            <a class="text-green" href="newsfeed.html" th:data-id="${each_nonFriend.id}"
+                               id="request_anchor"
+                               onclick="requestFriendship(this.getAttribute('data-id'))">Add friend</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer
+================================================= -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-wrapper">
+                <div class="col-md-3 col-sm-3">
+                    <a th:href="@{/index}"><img src="images/logo-black.png" alt="" class="footer-logo"/></a>
+                    <ul class="list-inline social-icons">
+                        <li><a href="https://www.facebook.com/"><i class="icon ion-social-facebook"></i></a></li>
+                        <li><a href="https://www.linkedin.com/"><i class="icon ion-social-linkedin"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-3" id="footer-contact">
+                    <h6>Contact Us</h6>
+                    <ul class="contact">
+                        <li><i class="icon ion-ios-telephone-outline"></i>+359 887 69 35 84 - Yavor Yankov +359 898 71
+                            70 03 - Tihomira Tacheva
+                        </li>
+                        <li><i class="icon ion-ios-email-outline"></i>yavoryankov83@gmail.com tihomira.tacheva@gmail.com
+                        </li>
+                        <li><i class="icon ion-ios-location-outline"></i>31 Alexander Malinov Blvd. Sofia 1729, Bulgaria
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright 2019 Tihomira Tacheva & Yavor Yankov Team. All rights reserved</p>
+    </div>
+</footer>
+
+<!--preloader-->
+<div id="spinner-wrapper">
+    <div class="spinner"></div>
+</div>
+
+<!-- Scripts
+================================================= -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/jquery.sticky-kit.min.js"></script>
+<script src="js/jquery.scrollbar.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/_jquery.magnific-popup.js"></script>
+<script src="js/_jquery.magnific-popup-init.js"></script>
+<script src="js/_loader.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+</html>

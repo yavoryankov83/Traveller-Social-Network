@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Traveller | A Social Network For Travellers</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="This is social network html5 template available in themeforest......"/>
+    <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page"/>
+    <meta name="robots" content="index, follow"/>
+
+    <!-- Stylesheets
+    ================================================= -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <base href="/">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/ionicons.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <!--Google Webfont-->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,300italic,400italic,500,500italic,600,600italic,700'
+          rel='stylesheet' type='text/css'>
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+</head>
+<body>
+
+<!-- Header
+================================================= -->
+<header id="header" class="lazy-load">
+    <nav class="navbar navbar-default navbar-fixed-top menu">
+        <div class="container">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="images/logo.png" alt="logo"/></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right main-menu">
+                    <li class="dropdown">
+                        <a sec:authorize="!isAuthenticated()" th:href="@{/}">Home</a>
+                        <a sec:authorize="isAuthenticated()" th:href="@{/index}">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Newsfeed <span><img src="images/down-arrow.png" alt=""/></span></a>
+                            <ul class="dropdown-menu login">
+                                <li><a th:href="@{/login}">My info</a></li>
+                            </ul>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" th:if="${users.contains(principal)}" class="dropdown"><a th:href="@{/logout}">Logout</a></li>
+                </ul>
+                <form class="navbar-form navbar-right hidden-sm">
+                    <div class="form-group">
+                        <i class="icon ion-android-search"></i>
+                        <input id="input" class="form-control js-user-search" autocomplete placeholder="Search here people ..." type="text">
+                    </div>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+</header>
+<!--Header End-->
+
+<!-- Top Banner
+================================================= -->
+<section id="banner">
+    <div class="container">
+
+        <!-- Sign Up Form
+        ================================================= -->
+
+        <div id="user-photo" th:object="${user}" th:user-photo="${user.getUserPhotoAsString()}"></div>
+        <div sec:authorize="!isAuthenticated()" id="mainDiv" class="sign-up-form">
+            <a href="/" class="logo"><img src="images/logo.png" alt="Friend Finder"/></a>
+            <h2 class="text-white">Connect with your Traveller Friends</h2>
+            <div class="line-divider"></div>
+            <div class="form-wrapper">
+                <p class="signup-text">Sign up now and meet awesome people who travel around the world</p>
+                <form id="register" th:action="@{/register}" method="post" th:object="${user}" enctype="multipart/form-data">
+                    <fieldset class="form-group">
+                        <label for="example-username" class="text-danger" th:errors="*{username}"
+                               th:text="#{user.invalidUsername}">Invalid Username</label>
+                        <input type="text" class="form-control" th:field="*{username}" id="example-username"
+                               placeholder="Enter username" autofocus autocomplete required minlength="3"
+                               maxlength="50">
+                        <small class="text-white" th:text="#{user.Username.validity}">Must be between 3 and 50
+                            characters
+                            long</small>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="example-email" class="text-danger" th:errors="*{email}"
+                               th:text="#{user.invalidEmail}">Email
+                            error</label>
+                        <input type="email" class="form-control" th:field="*{email}" id="example-email"
+                               placeholder="Enter email" required autocomplete minlength="3" maxlength="50">
+                        <small class="text-white" th:text="#{user.Email.Validity}">Must be between 3 and 50 characters
+                            long</small>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="example-password" class="text-danger" th:errors="*{password}"
+                               th:text="#{user.invalidPassword}">Password error</label>
+                        <input type="password" class="form-control" th:field="*{password}" id="example-password"
+                               placeholder="Enter a password" required autocomplete minlength="3" maxlength="68">
+                        <small class="text-white" th:text="#{user.Password.validity}">Must be between 3 and 68
+                            characters
+                            long</small>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="example-password-confirmation" class="text-danger"
+                               th:errors="*{passwordConfirmation}"
+                               th:text="#{user.invalidPassword}">Password error</label>
+                        <input type="password" class="form-control" th:field="*{passwordConfirmation}"
+                               id="example-password-confirmation" placeholder="Confirm a password" required autocomplete
+                               minlength="3" maxlength="68">
+                        <small class="text-white" th:text="#{user.Password.validity}">Must be between 3 and 68
+                            characters
+                            long</small>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="example-first-name" class="text-danger" th:errors="*{firstName}"
+                               th:text="#{user.invalidfirstName}">Invalid First name</label>
+                        <input type="text" class="form-control" th:field="*{firstName}" id="example-first-name"
+                               placeholder="Enter first name" required autocomplete minlength="3" maxlength="50">
+                        <small class="text-white" th:text="#{user.firstName.validity}">Must be between 3 and 50
+                            characters long</small>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="example-last-name" class="text-danger" th:errors="*{lastName}"
+                               th:text="#{user.invalidlastName}">Invalid Last name</label>
+                        <input type="text" class="form-control" th:field="*{lastName}" id="example-last-name"
+                               placeholder="Enter last name" required autocomplete minlength="3" maxlength="50">
+                        <small class="text-white" th:text="#{user.lastName.validity}">Must be between 3 and 50
+                            characters long</small>
+                    </fieldset>
+                    <br/>
+
+                    <fieldset hidden="hidden" class="form-group">
+                        <input type="file" accept="image/*" class="form-control" id="example-user-photo" name="photo"/>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+                    </fieldset>
+                    <label for="example-user-photo" style="cursor: pointer"><i class="fa fa-photo"></i> UPLOAD your personal photo</label>
+                    <br/>
+                    <br/>
+
+                    <fieldset hidden="hidden" class="form-group">
+                        <input type="file" accept="image/*" class="form-control" id="example-user-cover-photo" name="cover"/>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+                    </fieldset>
+                    <label for="example-user-cover-photo" style="cursor: pointer"><i class="fa fa-photo"></i> UPLOAD your cover photo</label>
+                    <br/>
+                    <br/>
+                </form>
+                <p>By signing up you agree to the terms</p>
+                <button type="submit" form="register" class="btn-secondary">Sign up</button>
+            </div>
+            <a id="show-login" th:href="@{/login}"><b>Already have an account?</b></a>
+            <img class="form-shadow" src="images/bottom-shadow.png" alt=""/>
+        </div><!-- Sign Up Form End -->
+        <svg class="arrows hidden-xs hidden-sm">
+            <path class="a1" d="M0 0 L30 32 L60 0"></path>
+            <path class="a2" d="M0 20 L30 52 L60 20"></path>
+            <path class="a3" d="M0 40 L30 72 L60 40"></path>
+        </svg>
+    </div>
+</section>
+
+<!-- Live Feed Section
+================================================= -->
+<section id="live-feed">
+    <div class="container wrapper">
+        <h2 class="sub-title">see what’s happening now</h2>
+        <div id="div" class="row">
+            <h3>USERS | POSTS</h3>
+            <div id="users-container" class="col-md-5 col-sm-6 col-md-offset-1" style="overflow-y: scroll; height: 280px">
+            </div>
+            <div id="posts-container" class="col-md-5 col-sm-6 col-md-offset-0" style="overflow-y: scroll; height: 280px">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Image Divider
+================================================= -->
+<div class="img-divider hidden-sm hidden-xs"></div>
+
+<!-- Facts Section
+================================================= -->
+<section id="site-facts">
+    <div class="container wrapper">
+        <div class="circle">
+            <ul class="facts-list">
+                <li>
+                    <div id="users-count" class="fact-icon"><i class="icon ion-ios-people-outline"></i></div>
+<!--                    <div id="usersCount" th:object="${usersCount}" th:usersCount="${usersCount}"></div>-->
+                    <h2 class="text-white" th:text="${usersCount}"></h2>
+
+                    <p style="font-size: medium">People registered</p>
+                </li>
+                <li>
+                    <div id="posts-count" class="fact-icon"><i class="icon ion-images"></i></div>
+<!--                    <div id="postsCount" th:object="${postsCount}" th:postsCount="${postsCount}"></div>-->
+                    <h2 class="text-white" th:text="${postsCount}"></h2>
+
+                    <p style="font-size: medium">Posts published</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section
+================================================= -->
+<section id="features">
+    <div class="container wrapper">
+        <h1 class="section-title slideDown">Love to travel</h1>
+
+        <h2 class="sub-title">Find friends to travel with</h2>
+        <p>People Already Signed Up</p>
+        <img src="images/face-map.png" alt="" class="img-responsive face-map slideUp hidden-sm hidden-xs"/>
+    </div>
+
+</section>
+
+
+<!-- Footer
+================================================= -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-wrapper">
+                <div class="col-md-3 col-sm-3">
+                    <a th:href="@{/}"><img src="images/logo-black.png" alt="" class="footer-logo"/></a>
+                    <ul class="list-inline social-icons">
+                        <li><a href="https://www.facebook.com/"><i class="icon ion-social-facebook"></i></a></li>
+                        <li><a href="https://www.linkedin.com/"><i class="icon ion-social-linkedin"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-3" id="footer-contact">
+                    <h6>Contact Us</h6>
+                    <ul class="contact">
+                        <li><i class="icon ion-ios-telephone-outline"></i>+359 887 69 35 84 - Yavor Yankov +359 898 71
+                            70 03 - Tihomira Tacheva
+                        </li>
+                        <li><i class="icon ion-ios-email-outline"></i>yavoryankov83@gmail.com tihomira.tacheva@gmail.com
+                        </li>
+                        <li><i class="icon ion-ios-location-outline"></i>31 Alexander Malinov Blvd. Sofia 1729, Bulgaria
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright 2019 Tihomira Tacheva & Yavor Yankov Team. All rights reserved</p>
+    </div>
+</footer>
+
+<!--preloader-->
+<div id="spinner-wrapper">
+    <div class="spinner"></div>
+</div>
+
+<!-- Scripts
+================================================= -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.appear.min.js"></script>
+<script src="js/jquery.incremental-counter.js"></script>
+<script src="js/script.js"></script>
+<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+</body>
+</html>
