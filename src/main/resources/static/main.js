@@ -90,7 +90,7 @@ $('#posts-container').on('scroll', function () {
 //FUNCTION TO SEARCH IN DATABASE FOR USERS BY USERNAME, EMAIL, FIRST NAME, LAST NAME - ONLY FOR HOME PAGE
 let timeoutUsers1 = null;
 $('#input').on('keyup', function () {
-    const $URL = `http://localhost:8080/api/v1/users/filtered?filterParam=${this.value}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/users/filtered?filterParam=${this.value}`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     const $usersDiv = $('#users-container');
@@ -131,7 +131,7 @@ $('#input').on('keyup', function () {
 //FUNCTION TO SEARCH IN DATABASE FOR USERS BY USERNAME, EMAIL, FIRST NAME, LAST NAME - FOR ALL PAGES
 let timeoutUsers = null;
 $('#input').on('keyup', function () {
-    const $URL = `http://localhost:8080/api/v1/users/filtered?filterParam=${this.value}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/users/filtered?filterParam=${this.value}`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     const $users = $('#users');
@@ -178,7 +178,7 @@ $('#input').on('keyup', function () {
 //FUNCTION TO SEARCH IN DATABASE FOR POSTS BY USERNAME, EMAIL, FIRST NAME, LAST NAME
 let timeoutPosts = null;
 $('#input').on('keyup', function () {
-    const $URL = `http://localhost:8080/api/v1/posts/public/filtered?filterParam=${this.value}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/posts/public/filtered?filterParam=${this.value}`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     const $postsDiv = $('#posts-container');
@@ -505,7 +505,7 @@ const $getAllPostsPageableByUserOnTimelineView = function getAllPostsByUserPagea
 //FUNCTION TO CHECK USER ROLES COUNT
 function getUserRolesCount(username) {
     const $ASYNC = false;
-    const $URL = `http://localhost:8080/api/v1/users/${username}/rolesCount`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/users/${username}/rolesCount`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     let rolesCount = 0;
@@ -529,7 +529,7 @@ function updatePost(postId) {
     $(`#${'post-content' + postId}`).replaceWith($input);
     $(`#${'post-input' + postId}`).on('keypress',function(event) {
         if(event.key === "Enter") {
-            const $URL = `http://localhost:8080/api/v1/posts/${postId}`;
+            const $URL = `https://traveller-social-network.herokuapp.com/api/v1/posts/${postId}`;
             const $VERB = 'PUT';
             const $DATATYPE = 'json';
             let postContent = document.getElementById(`${'post-input' + postId}`).value;
@@ -566,7 +566,7 @@ function updatePostInThymeleaf(postId) {
     $(`#${'post1-content' + postId}`).replaceWith($input);
     $(`#${'post1-input' + postId}`).on('keypress',function(event) {
         if(event.key === "Enter") {
-            const $URL = `http://localhost:8080/api/v1/posts/${postId}`;
+            const $URL = `https://traveller-social-network.herokuapp.com/api/v1/posts/${postId}`;
             const $VERB = 'PUT';
             const $DATATYPE = 'json';
             let postContent = document.getElementById(`${'post1-input' + postId}`).value;
@@ -603,7 +603,7 @@ function updateParentComments(parentCommentId) {
     $(`#${'comment-content' + parentCommentId}`).replaceWith($input);
     $(`#${'comment-input' + parentCommentId}`).on('keypress',function(event) {
         if(event.key === "Enter") {
-            const $URL = `http://localhost:8080/api/v1/comments/${parentCommentId}`;
+            const $URL = `https://traveller-social-network.herokuapp.com/api/v1/comments/${parentCommentId}`;
             const $VERB = 'PUT';
             const $DATATYPE = 'json';
             let postContent = document.getElementById(`${'comment-input' + parentCommentId}`).value;
@@ -637,7 +637,7 @@ function updateChildComments(childCommentId) {
     $(`#${'child-comment-content' + childCommentId}`).replaceWith($input);
     $(`#${'child-comment-input' + childCommentId}`).on('keypress',function(event) {
         if(event.key === "Enter") {
-            const $URL = `http://localhost:8080/api/v1/comments/${childCommentId}`;
+            const $URL = `https://traveller-social-network.herokuapp.com/api/v1/comments/${childCommentId}`;
             const $VERB = 'PUT';
             const $DATATYPE = 'json';
             let postContent = document.getElementById(`${'child-comment-input' + childCommentId}`).value;
@@ -666,7 +666,7 @@ function updateChildComments(childCommentId) {
 
 //FUNCTION TO CREATE PARENT COMMENT
 function createParentCommentOnEnterHit(userId, postId) {
-    const $URL = `http://localhost:8080/api/v1/comments`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/comments`;
     const $VERB = 'POST';
     const $DATATYPE = 'json';
     let postContent = document.getElementById(`${'parent-comment-create' + postId}`).value;
@@ -701,7 +701,7 @@ function createParentCommentOnEnterHit(userId, postId) {
 
 //FUNCTION TO CREATE CHILD COMMENT
 function createChildCommentOnEnterHit(userId, postId, commentId) {
-    const $URL = `http://localhost:8080/api/v1/comments`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/comments`;
     const $VERB = 'POST';
     const $DATATYPE = 'json';
     let postContent = document.getElementById(`${'child-comment-create' + postId}`).value;
@@ -753,7 +753,7 @@ $('#next-btn').on('click', function () {
 $('#number_likes_post').on('click', function () {
     // let userId = $('#userId').attr('userId');
     let postId = $('#postId').attr('postId');
-    const $URL = `http://localhost:8080/api/v1/likedPosts/posts/${postId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/likedPosts/posts/${postId}`;
     const $VERB = 'POST';
     const $DATATYPE = 'json';
 
@@ -773,7 +773,7 @@ $('#number_likes_post').on('click', function () {
 
 //FUNCTION TO LIKE POSTS DYNAMICALLY
 function createLikeToPost(postId) {
-    const $URL = `http://localhost:8080/api/v1/likedPosts/posts/${postId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/likedPosts/posts/${postId}`;
     const $VERB = 'POST';
     const $DATATYPE = 'json';
 
@@ -797,7 +797,7 @@ function createLikeToPost(postId) {
 function getLikesOfPost(postId) {
     let $likeDiv = $(`#a-${postId}`);
     const $ASYNC = false;
-    const $URL = `http://localhost:8080/api/v1/likedPosts/posts/${postId}/count`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/likedPosts/posts/${postId}/count`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     let likesCount = 0;
@@ -816,7 +816,7 @@ function getLikesOfPost(postId) {
 
 //FUNCTION TO LIKE COMMENT DYNAMICALLY
 function createLikeToComment(commentId) {
-    const $URL = `http://localhost:8080/api/v1/likedComments/${commentId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/likedComments/${commentId}`;
     const $VERB = 'POST';
     const $DATATYPE = 'json';
 
@@ -840,7 +840,7 @@ function createLikeToComment(commentId) {
 function getLikesOfComment(commentId) {
     let $likeDiv = $(`#${'comment-likes' + commentId}`);
     const $ASYNC = false;
-    const $URL = `http://localhost:8080/api/v1/likedComments/comment/${commentId}/count`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/likedComments/comment/${commentId}/count`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     let commentLikesCount = 0;
@@ -859,7 +859,7 @@ function getLikesOfComment(commentId) {
 
 //FUNCTION TO LIKE CHILD COMMENT DYNAMICALLY
 function createLikeToChildComment(childCommentId) {
-    const $URL = `http://localhost:8080/api/v1/likedComments/${childCommentId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/likedComments/${childCommentId}`;
     const $VERB = 'POST';
     const $DATATYPE = 'json';
 
@@ -883,7 +883,7 @@ function createLikeToChildComment(childCommentId) {
 function getLikesOfChildComment(childCommentId) {
     let $likeDiv = $(`#${'child-comment-likes' + childCommentId}`);
     const $ASYNC = false;
-    const $URL = `http://localhost:8080/api/v1/likedComments/comment/${childCommentId}/count`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/likedComments/comment/${childCommentId}/count`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     let childCommentLikesCount = 0;
@@ -906,7 +906,7 @@ function deletePosts(postId) {
     $.ajax({
         async: true,
         type: 'DELETE',
-        url: `http://localhost:8080/api/v1/posts/${postId}`,
+        url: `https://traveller-social-network.herokuapp.com/api/v1/posts/${postId}`,
         dataType: 'json',
         success: function () {
         },
@@ -922,7 +922,7 @@ function deleteComments(commentId) {
     $.ajax({
         async: true,
         type: 'DELETE',
-        url: `http://localhost:8080/api/v1/comments/${commentId}`,
+        url: `https://traveller-social-network.herokuapp.com/api/v1/comments/${commentId}`,
         dataType: 'json',
         success: function () {
         },
@@ -938,7 +938,7 @@ function deleteChildComments(childCommentId) {
     $.ajax({
         async: true,
         type: 'DELETE',
-        url: `http://localhost:8080/api/v1/comments/${childCommentId}`,
+        url: `hhttps://traveller-social-network.herokuapp.com/api/v1/comments/${childCommentId}`,
         dataType: 'json',
         success: function () {
         },
@@ -954,7 +954,7 @@ function isLikeOfPostExist(postId) {
     $.ajax({
         async: false,
         type: 'GET',
-        url: `http://localhost:8080/api/v1/likedPosts/${postId}/exist`,
+        url: `https://traveller-social-network.herokuapp.com/api/v1/likedPosts/${postId}/exist`,
         dataType: 'json',
         success: function (result) {
             isExist = result;
@@ -965,7 +965,7 @@ function isLikeOfPostExist(postId) {
 
 //FUNCTION TO CREATE POST LIKE ON BUTTON CLICK
 function LikedPostCreate(postId) {
-    const $URL = `http://localhost:8080/api/v1/likedPosts/posts/${postId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/likedPosts/posts/${postId}`;
     const $VERB = 'POST';
     const $DATATYPE = 'json';
 
@@ -995,7 +995,7 @@ function LikedPostCreate(postId) {
 //FUNCTION TO GET ALL POST LIKES OF POST BY POST ID
 function getPostLikes(postId) {
     const $ASYNC = false;
-    const $URL = `http://localhost:8080/api/v1/likedPosts/posts/${postId}/count`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/likedPosts/posts/${postId}/count`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     let likesCount = 0;
@@ -1015,7 +1015,7 @@ function getPostLikes(postId) {
 //FUNCTION TO CHECK IF USERS ARE FRIENDS
 function areUsersFriends(userId) {
     const $ASYNC = false;
-    const $URL = `http://localhost:8080/api/v1/friendShip/friends/user/${userId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/friendShip/friends/user/${userId}`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     let areFriends = false;
@@ -1038,7 +1038,7 @@ function isLikeOfCommentExist(commentId) {
     $.ajax({
         async: false,
         type: 'GET',
-        url: `http://localhost:8080/api/v1/likedComments/${commentId}/exist`,
+        url: `https://traveller-social-network.herokuapp.com/api/v1/likedComments/${commentId}/exist`,
         dataType: 'json',
         success: function (result) {
             isExist = result;
@@ -1050,7 +1050,7 @@ function isLikeOfCommentExist(commentId) {
 //FUNCTION TO GET ALL COMMENT LIKES OF COMMENT BY COMMENT ID
 function getCommentLikes(commentId) {
     const $ASYNC = false;
-    const $URL = `http://localhost:8080/api/v1/likedComments/comment/${commentId}/count`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/likedComments/comment/${commentId}/count`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     let commentLikesCount = 0;
@@ -1070,7 +1070,7 @@ function getCommentLikes(commentId) {
 //FUNCTION TO GET ALL PARENT COMMENTS OF POST
 function getCommentData(postId) {
     const $ASYNC = false;
-    const $URL = `http://localhost:8080/api/v1/comments/parentComment/post/${postId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/comments/parentComment/post/${postId}`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     let commentsResultArray = {};
@@ -1092,7 +1092,7 @@ let countCommentPage = 0;
 function getAllCommentsPageable(postId, countCommentPage) {
     const perPage = 2;
     const $ASYNC = false;
-    const $URL = `http://localhost:8080/api/v1/comments/parentComment/post/${postId}/pageable?page=${countCommentPage}&size=${perPage}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/comments/parentComment/post/${postId}/pageable?page=${countCommentPage}&size=${perPage}`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     let parentCommentsResultArray = {};
@@ -1116,7 +1116,7 @@ function getAllCommentsPageable(postId, countCommentPage) {
 //FUNCTION TO GET ALL CHILD COMMENTS OF COMMENT
 function getChildCommentData(commentId) {
     const $ASYNC = false;
-    const $URL = `http://localhost:8080/api/v1/comments/childComments/comment/${commentId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/comments/childComments/comment/${commentId}`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     let commentsResultArray = {};
@@ -1136,7 +1136,7 @@ function getChildCommentData(commentId) {
 //FUNCTION TO UPDATE COMMENT
 function updateCommentData(commentId) {
     const $ASYNC = true;
-    const $URL = `http://localhost:8080/api/v1/comments/${commentId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/comments/${commentId}`;
     const $VERB = 'PUT';
     const $DATATYPE = 'json';
     let comment_content = document.getElementById(`${commentId + 5000}`).value;
@@ -1167,7 +1167,7 @@ function updateCommentData(commentId) {
 //FUNCTION TO UPDATE REPLY
 function updateReplyData(replyId) {
     const $ASYNC = true;
-    const $URL = `http://localhost:8080/api/v1/comments/${replyId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/comments/${replyId}`;
     const $VERB = 'PUT';
     const $DATATYPE = 'json';
     let reply_content = $('input[id=update-reply-content]').val();
@@ -1197,7 +1197,7 @@ function updateReplyData(replyId) {
 //FUNCTION TO UPDATE POST
 function updatePostData(postId) {
     const $ASYNC = true;
-    const $URL = `http://localhost:8080/api/v1/comments/${postId}`;
+    const $URL = `https://traveller-social-network.herokuapp.com/api/v1/comments/${postId}`;
     const $VERB = 'PUT';
     const $DATATYPE = 'json';
     let post_content = $('input[id=update-comment-content]').val();
@@ -1229,7 +1229,7 @@ function requestFriendship(userRequestId) {
     $.ajax({
         async: false,
         type: 'POST',
-        url: `http://localhost:8080/api/v1/friendShip/${userRequestId}`,
+        url: `https://traveller-social-network.herokuapp.com/api/v1/friendShip/${userRequestId}`,
         dataType: 'json',
         success: function () {
             window.location = location.href;
@@ -1252,7 +1252,7 @@ function blockFriendship(userRequestId) {
     $.ajax({
         async: true,
         type: 'PUT',
-        url: `http://localhost:8080/api/v1/friendShip/${userRequestId}/block`,
+        url: `https://traveller-social-network.herokuapp.com/api/v1/friendShip/${userRequestId}/block`,
         dataType: 'json',
         success: function () {
             alert('Ok!');
@@ -1265,7 +1265,7 @@ function unblockFriendship(userRequestId) {
     $.ajax({
         async: true,
         type: 'PUT',
-        url: `http://localhost:8080/api/v1/friendShip/${userRequestId}/unblock`,
+        url: `https://traveller-social-network.herokuapp.com/api/v1/friendShip/${userRequestId}/unblock`,
         dataType: 'json',
         success: function () {
             alert('Ok!');
@@ -1278,7 +1278,7 @@ function rejectFriendshipRequest(userRequestId) {
     $.ajax({
         async: true,
         type: 'PUT',
-        url: `http://localhost:8080/api/v1/friendShip/${userRequestId}/3`,
+        url: `https://traveller-social-network.herokuapp.com/api/v1/friendShip/${userRequestId}/3`,
         dataType: 'json',
         success: function () {
             alert('Ok!');
@@ -1291,7 +1291,7 @@ function acceptFriendshipRequest(userRequestId) {
     $.ajax({
         async: true,
         type: 'PUT',
-        url: `http://localhost:8080/api/v1/friendShip/${userRequestId}/2`,
+        url: `https://traveller-social-network.herokuapp.com/api/v1/friendShip/${userRequestId}/2`,
         dataType: 'json',
         success: function () {
             alert('Ok!');
@@ -1304,7 +1304,7 @@ function deleteUser(userRequestId) {
     $.ajax({
         async: true,
         type: 'DELETE',
-        url: `http://localhost:8080/api/v1/users/${userRequestId}`,
+        url: `https://traveller-social-network.herokuapp.com/api/v1/users/${userRequestId}`,
         dataType: 'json',
         success: function () {
             alert('Ok!');
