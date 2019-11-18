@@ -219,7 +219,7 @@ $('#input').on('keyup', function () {
 let countUserPage = 0;
 const $getAllUsersPageableOnIndexView = function getAllUsersPageable() {
     const perPage = 5;
-    const $URL = `http://localhost:8080/api/v1/users/pageable?page=${countUserPage}&size=${perPage}`;
+    const $URL = `http://api/v1/users/pageable?page=${countUserPage}&size=${perPage}`;
     const $VERB = 'GET';
     const $DATATYPE = 'json';
     const $usersCountDiv = $('#users-count');
