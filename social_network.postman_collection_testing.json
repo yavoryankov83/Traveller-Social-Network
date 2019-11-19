@@ -1,0 +1,1024 @@
+{
+	"id": "084835df-98d6-49d7-9263-905b489b6983",
+	"name": "social_network",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [],
+	"folders_order": [
+		"4a015baf-d3e3-4600-bac8-41e1560cf0ab",
+		"ae17508e-94e5-46fc-9bab-74293d7e9273",
+		"94a54e84-0305-433b-843a-fc5a3f69cc10",
+		"6378a56b-a4dc-4a78-a2ed-17dad689d9a9",
+		"09a14432-711d-4c72-8427-cc0b05ef7f5f",
+		"1e682d33-607f-4253-802f-e898a5f20695"
+	],
+	"protocolProfileBehavior": {},
+	"folders": [
+		{
+			"id": "09a14432-711d-4c72-8427-cc0b05ef7f5f",
+			"name": "comment",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "084835df-98d6-49d7-9263-905b489b6983",
+			"folder": null,
+			"order": [
+				"20cef889-5ae0-4cf7-a6be-896d2b10a94d",
+				"2c2c7a73-4ca2-4f7f-bdd0-d38d0591e7bf",
+				"079ef605-daf3-4f19-9730-26898e023267",
+				"e13357eb-4c03-463b-b130-4c3e63196b69",
+				"f2e429d4-3787-4b36-ae76-92f1b4b7e015",
+				"bc90b6ab-81c3-4c3b-a6f0-cf9db81a935b"
+			],
+			"folders_order": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"id": "1e682d33-607f-4253-802f-e898a5f20695",
+			"name": "friendShip",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "084835df-98d6-49d7-9263-905b489b6983",
+			"folder": null,
+			"order": [
+				"4fb1e8af-0f9f-4dc2-8f73-3801e6535554",
+				"86309888-77d7-4dd2-9348-1f484a4a8670",
+				"4cf7a267-a6fc-4fee-a13c-ac8fff1e051d"
+			],
+			"folders_order": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"id": "6378a56b-a4dc-4a78-a2ed-17dad689d9a9",
+			"name": "liked_comment",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "084835df-98d6-49d7-9263-905b489b6983",
+			"folder": null,
+			"order": [
+				"85504f37-2c48-4d77-8fd6-4426a2010aca",
+				"836de2e1-88f5-4b8d-ae53-890299c4eb66",
+				"4c0f94c7-ddb5-4ebc-9055-111b1ae87918",
+				"fb02be2b-9f41-4c93-9ea3-ebbb7a75675b",
+				"f2602533-3f8e-4272-9912-7e9a4f39a6a8",
+				"f59edc1d-1c69-48a5-bf20-fd3fa384c69d",
+				"a8407e6a-940d-4302-8546-7fa701996a16",
+				"28b25348-e014-4ab4-aeca-8586780e8790"
+			],
+			"folders_order": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"id": "94a54e84-0305-433b-843a-fc5a3f69cc10",
+			"name": "liked_post",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "084835df-98d6-49d7-9263-905b489b6983",
+			"folder": null,
+			"order": [
+				"b17d6cad-3669-4132-b982-a0fb13dac99a",
+				"7b4688d7-b94c-4b1e-b08a-23c023bc9af7",
+				"678faac3-a77d-435a-9715-664a593dd9b6",
+				"ef45322b-9fc1-41dc-82a2-49d94d580edd",
+				"633f18e8-c117-4dd1-8f44-95bb23fe27dd",
+				"772b1c4e-5d41-44cb-9cdb-d388826de186",
+				"ebefaa68-0bde-4378-9cd7-49ded7ad4e81",
+				"a87cea6e-5dd1-4f3b-a21d-adc6cfa637d3"
+			],
+			"folders_order": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"id": "ae17508e-94e5-46fc-9bab-74293d7e9273",
+			"name": "post",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "084835df-98d6-49d7-9263-905b489b6983",
+			"folder": null,
+			"order": [
+				"e8f83916-fc4c-4a66-874c-f7092eca0a98",
+				"8498d555-1b03-48b5-96a6-9b33de0e87f2",
+				"bf4b1104-6d9f-4af3-bae5-81feb76e2ef4",
+				"7ac2a27f-bf89-4bfa-90f7-9b87889ed574",
+				"9bf35e1c-ee67-4dc6-804d-8d0933b22e18",
+				"4920b457-859a-4d29-a1cc-d3cf19bd64a0",
+				"8821a4a5-9cda-4c15-b6de-e71afe5029eb",
+				"37faa03c-0888-4bde-8a4e-c0d82fcdfb69",
+				"213254a9-9012-4f92-820f-97a8b23f70bc"
+			],
+			"folders_order": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"id": "4a015baf-d3e3-4600-bac8-41e1560cf0ab",
+			"name": "user",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "084835df-98d6-49d7-9263-905b489b6983",
+			"folder": null,
+			"order": [
+				"693ca77d-58df-43ee-b360-c0487a1e225d",
+				"8cb734fa-2b04-4cc0-b15b-49650b2734e9",
+				"53b63e91-dd7b-4098-90ad-c461a77086cc",
+				"54fc0a67-1256-434c-a0d9-3e82450a232c",
+				"724f5405-4a43-4356-bab5-e1fdc0505704",
+				"bd48f4f6-cf2f-4398-9ad1-3cc96fdfcbc0"
+			],
+			"folders_order": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"requests": [
+		{
+			"id": "079ef605-daf3-4f19-9730-26898e023267",
+			"name": "getAllCommentsByUserAndPost",
+			"url": "localhost:8080/api/v1/comments/users/10/posts/10",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "09a14432-711d-4c72-8427-cc0b05ef7f5f",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "20cef889-5ae0-4cf7-a6be-896d2b10a94d",
+			"name": "getCommentById",
+			"url": "localhost:8080/api/v1/comments/2",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "09a14432-711d-4c72-8427-cc0b05ef7f5f",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "213254a9-9012-4f92-820f-97a8b23f70bc",
+			"name": "getAllPublicPostsDTO",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ae17508e-94e5-46fc-9bab-74293d7e9273",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "28b25348-e014-4ab4-aeca-8586780e8790",
+			"name": "deleteLikedComment",
+			"url": "localhost:8080/api/v1/likedComments/4",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6378a56b-a4dc-4a78-a2ed-17dad689d9a9",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "2c2c7a73-4ca2-4f7f-bdd0-d38d0591e7bf",
+			"name": "getAllCommentsByPost",
+			"url": "localhost:8080/api/v1/comments/post/2",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "09a14432-711d-4c72-8427-cc0b05ef7f5f",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "37faa03c-0888-4bde-8a4e-c0d82fcdfb69",
+			"name": "deletePost",
+			"url": "localhost:8080/api/v1/posts/10",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ae17508e-94e5-46fc-9bab-74293d7e9273",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "4920b457-859a-4d29-a1cc-d3cf19bd64a0",
+			"name": "CreatePost",
+			"url": "localhost:8080/api/v1/posts",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "yavor"
+					},
+					{
+						"key": "username",
+						"value": "yavor"
+					}
+				]
+			},
+			"events": [],
+			"folder": "ae17508e-94e5-46fc-9bab-74293d7e9273",
+			"rawModeData": "{\n        \"content\": \"POSTA MI\",\n        \"postPhoto\": null,\n        \"video\": null,\n        \"location\": \"Sofia\",\n        \"visible\": true\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "4c0f94c7-ddb5-4ebc-9055-111b1ae87918",
+			"name": "getLikedCommentsByUser",
+			"url": "localhost:8080/api/v1/likedComments/users/9",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6378a56b-a4dc-4a78-a2ed-17dad689d9a9",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "4cf7a267-a6fc-4fee-a13c-ac8fff1e051d",
+			"name": "updateFriendShip",
+			"url": "localhost:8080/api/v1/friendShip/10/true",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "bella"
+					},
+					{
+						"key": "username",
+						"value": "bella"
+					}
+				]
+			},
+			"events": [],
+			"folder": "1e682d33-607f-4253-802f-e898a5f20695",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "4fb1e8af-0f9f-4dc2-8f73-3801e6535554",
+			"name": "getFriendsStatus",
+			"url": "localhost:8080/api/v1/friendShip/users/10/friends/11",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "1e682d33-607f-4253-802f-e898a5f20695",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "53b63e91-dd7b-4098-90ad-c461a77086cc",
+			"name": "getByUsername",
+			"url": "localhost:8080/api/v1/users/username/yavor",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "4a015baf-d3e3-4600-bac8-41e1560cf0ab",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "54fc0a67-1256-434c-a0d9-3e82450a232c",
+			"name": "deleteUser",
+			"url": "localhost:8080/api/v1/users/10",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "4a015baf-d3e3-4600-bac8-41e1560cf0ab",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "633f18e8-c117-4dd1-8f44-95bb23fe27dd",
+			"name": "getCountLikedPostByUser",
+			"url": "localhost:8080/api/v1/likedPosts/users/9/count",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "94a54e84-0305-433b-843a-fc5a3f69cc10",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "678faac3-a77d-435a-9715-664a593dd9b6",
+			"name": "getLikedPostsByUser",
+			"url": "localhost:8080/api/v1/likedPosts/users/9",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "94a54e84-0305-433b-843a-fc5a3f69cc10",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "693ca77d-58df-43ee-b360-c0487a1e225d",
+			"name": "getAllUsers",
+			"url": "localhost:8080/api/v1/users",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "4a015baf-d3e3-4600-bac8-41e1560cf0ab",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "724f5405-4a43-4356-bab5-e1fdc0505704",
+			"name": "createUser",
+			"url": "localhost:8080/api/v1/users",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "4a015baf-d3e3-4600-bac8-41e1560cf0ab",
+			"rawModeData": "{\n    \"username\": \"gogo\",\n    \"password\": \"gogo\",\n    \"passwordConfirmation\": \"gogo\",\n    \"email\": \"gogo@abv.bg\",\n    \"firstName\": \"gogo\",\n    \"lastName\": \"gogo\",\n    \"userPhoto\": null,\n    \"coverPhoto\": null\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "772b1c4e-5d41-44cb-9cdb-d388826de186",
+			"name": "getCountLikedPostByPost",
+			"url": "http://localhost:8080/api/v1/likedPosts/posts/45/count",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "94a54e84-0305-433b-843a-fc5a3f69cc10",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "7ac2a27f-bf89-4bfa-90f7-9b87889ed574",
+			"name": "getPostById",
+			"url": "localhost:8080/api/v1/posts/49",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ae17508e-94e5-46fc-9bab-74293d7e9273",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "7b4688d7-b94c-4b1e-b08a-23c023bc9af7",
+			"name": "getLikedPostByUserAndPost",
+			"url": "localhost:8080/api/v1/likedPosts/users/11/posts/10",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "94a54e84-0305-433b-843a-fc5a3f69cc10",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "836de2e1-88f5-4b8d-ae53-890299c4eb66",
+			"name": "getLikedCommentByUserAndComment",
+			"url": "localhost:8080/api/v1/likedComments/users/10/comments/4",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6378a56b-a4dc-4a78-a2ed-17dad689d9a9",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "8498d555-1b03-48b5-96a6-9b33de0e87f2",
+			"name": "getAllPublic",
+			"url": "localhost:8080/api/v1/posts/public",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ae17508e-94e5-46fc-9bab-74293d7e9273",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "85504f37-2c48-4d77-8fd6-4426a2010aca",
+			"name": "getLikedCommentById",
+			"url": "localhost:8080/api/v1/likedComments/4",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6378a56b-a4dc-4a78-a2ed-17dad689d9a9",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "86309888-77d7-4dd2-9348-1f484a4a8670",
+			"name": "createFriendShip",
+			"url": "localhost:8080/api/v1/friendShip/10",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "yavor"
+					},
+					{
+						"key": "username",
+						"value": "yavor"
+					}
+				]
+			},
+			"events": [],
+			"folder": "1e682d33-607f-4253-802f-e898a5f20695",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "8821a4a5-9cda-4c15-b6de-e71afe5029eb",
+			"name": "updatePost",
+			"url": "localhost:8080/api/v1/posts/70",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "yavor"
+					},
+					{
+						"key": "username",
+						"value": "yavor"
+					}
+				]
+			},
+			"events": [],
+			"folder": "ae17508e-94e5-46fc-9bab-74293d7e9273",
+			"rawModeData": "{\n        \"content\": \"JUST POSссс\",\n        \"postPhoto\": null,\n        \"video\": \"\",\n        \"location\": \"\"\n    }",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "8cb734fa-2b04-4cc0-b15b-49650b2734e9",
+			"name": "getUserById",
+			"url": "localhost:8080/api/v1/users/121",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "4a015baf-d3e3-4600-bac8-41e1560cf0ab",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "9bf35e1c-ee67-4dc6-804d-8d0933b22e18",
+			"name": "getPostsByUser",
+			"url": "localhost:8080/api/v1/posts/users/9",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ae17508e-94e5-46fc-9bab-74293d7e9273",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "a8407e6a-940d-4302-8546-7fa701996a16",
+			"name": "createLikedComment",
+			"url": "localhost:8080/api/v1/likedComments",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6378a56b-a4dc-4a78-a2ed-17dad689d9a9",
+			"rawModeData": "{\n        \"user\": {\n        \"id\": 11,\n        \"username\": \"ivan\",\n        \"password\": \"$2a$10$Pe6kmRAr1V99VrhFXQxV1uuPffBiMxPpYgPwqEWrnxl66gN5vy4Cu\",\n        \"passwordConfirmation\": null,\n        \"email\": \"ivan@abv.bg\",\n        \"firstName\": \"\",\n        \"lastName\": \"\",\n        \"userPhoto\": \"\",\n        \"coverPhoto\": \"\",\n        \"visible\": true,\n        \"createDate\": null,\n        \"updateDate\": \"2019-10-17T12:49:08.000+0000\",\n        \"enabled\": true\n    },\n        \"comment\": {\n        \t\"createDate\": \"2019-10-21T14:49:10.000+0000\",\n        \"updateDate\": \"2019-10-21T14:49:11.000+0000\",\n        \"id\": 2,\n        \"content\": \"iiiiii\",\n        \"enabled\": true,\n        \"user\": {\n            \"createDate\": null,\n            \"updateDate\": \"2019-10-19T21:04:10.000+0000\",\n            \"id\": 9,\n            \"username\": \"yavor\",\n            \"password\": \"$2a$10$qdwX4KT2BIr2PlQTK2LXnejOb9omcjA1GDV/WkuT6v9d3QAmPb6eK\",\n            \"passwordConfirmation\": null,\n            \"email\": \"yavor@abv.bg\",\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"userPhoto\": \"/uploads/yavor_photo.jpg\",\n            \"coverPhoto\": \"\",\n            \"userPhotoVisibility\": true,\n            \"nameVisibility\": true,\n            \"enabled\": true\n        }\n    \n    }\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "a87cea6e-5dd1-4f3b-a21d-adc6cfa637d3",
+			"name": "deleteLikedPost",
+			"url": "localhost:8080/api/v1/likedPosts/5",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "94a54e84-0305-433b-843a-fc5a3f69cc10",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "b17d6cad-3669-4132-b982-a0fb13dac99a",
+			"name": "getLikedPostById",
+			"url": "localhost:8080/api/v1/likedPosts/5",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "94a54e84-0305-433b-843a-fc5a3f69cc10",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "bc90b6ab-81c3-4c3b-a6f0-cf9db81a935b",
+			"name": "deleteComment",
+			"url": "localhost:8080/api/v1/comments/2",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "09a14432-711d-4c72-8427-cc0b05ef7f5f",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "bd48f4f6-cf2f-4398-9ad1-3cc96fdfcbc0",
+			"name": "updateUser",
+			"url": "localhost:8080/api/v1/users/121",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "4a015baf-d3e3-4600-bac8-41e1560cf0ab",
+			"rawModeData": "{\n    \"username\": \"gogo\",\n    \"password\": \"gogo\",\n    \"passwordConfirmation\": \"gogo\",\n    \"email\": \"gogo@abv.bg\",\n    \"firstName\": \"gogo\",\n    \"lastName\": \"Gogov\",\n    \"userPhoto\": null,\n    \"coverPhoto\": null\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "bf4b1104-6d9f-4af3-bae5-81feb76e2ef4",
+			"name": "getAllPostsIdsVisibleByPrincipal",
+			"url": "localhost:8080/api/v1/posts/publicDTO",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "yavor"
+					},
+					{
+						"key": "username",
+						"value": "yavor"
+					}
+				]
+			},
+			"events": [],
+			"folder": "ae17508e-94e5-46fc-9bab-74293d7e9273",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "e13357eb-4c03-463b-b130-4c3e63196b69",
+			"name": "createComment",
+			"url": "localhost:8080/api/v1/comments",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "09a14432-711d-4c72-8427-cc0b05ef7f5f",
+			"rawModeData": "{\n    \"content\": \"Commentar to parentId 1\",\n    \"user\": {\n    \"id\": 90\n    },\n    \"post\": {\n    \"id\": 49\n    },\n    \"parentComment\" : {\n    \"id\": 1\n    }\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "e8f83916-fc4c-4a66-874c-f7092eca0a98",
+			"name": "getAllPosts",
+			"url": "localhost:8080/api/v1/posts",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ae17508e-94e5-46fc-9bab-74293d7e9273",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "ebefaa68-0bde-4378-9cd7-49ded7ad4e81",
+			"name": "createLikedPost",
+			"url": "localhost:8080/api/v1/likedPosts",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "94a54e84-0305-433b-843a-fc5a3f69cc10",
+			"rawModeData": "{\n        \"user\": {\n        \"id\": 11,\n        \"username\": \"ivan\",\n        \"password\": \"$2a$10$Pe6kmRAr1V99VrhFXQxV1uuPffBiMxPpYgPwqEWrnxl66gN5vy4Cu\",\n        \"passwordConfirmation\": null,\n        \"email\": \"ivan@abv.bg\",\n        \"firstName\": \"\",\n        \"lastName\": \"\",\n        \"userPhoto\": \"\",\n        \"coverPhoto\": \"\",\n        \"visible\": true,\n        \"createDate\": null,\n        \"updateDate\": \"2019-10-17T12:49:08.000+0000\",\n        \"enabled\": true\n    },\n        \"post\": {\n        \"id\": 10,\n        \"content\": \"zzzzzzz\",\n        \"postPhoto\": null,\n        \"video\": null,\n        \"location\": null,\n        \"visible\": true,\n        \"createDate\": \"2019-10-17T13:40:24.000+0000\",\n        \"updateDate\": \"2019-10-17T13:40:24.000+0000\",\n        \"enabled\": true,\n        \"user\": {\n            \"id\": 10,\n            \"username\": \"rosen\",\n            \"password\": \"$2a$10$5DXICpIc74p81PbUSyncseR/OTUtmfOoaROJ2DqewRXHq.7.rnmOy\",\n            \"passwordConfirmation\": null,\n            \"email\": \"ivanovvvvvv@abv.bg\",\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"userPhoto\": \"/uploads/default_user_photo.png\",\n            \"coverPhoto\": \"/uploads/default_cover_photo.jpg\",\n            \"visible\": true,\n            \"createDate\": null,\n            \"updateDate\": \"2019-10-17T15:22:55.000+0000\",\n            \"enabled\": true\n        }\n    }\n    }",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "ef45322b-9fc1-41dc-82a2-49d94d580edd",
+			"name": "getLikedPostByPost",
+			"url": "localhost:8080/api/v1/likedPosts/posts/45",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "94a54e84-0305-433b-843a-fc5a3f69cc10",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "f2602533-3f8e-4272-9912-7e9a4f39a6a8",
+			"name": "getCountLikedCommentByUser",
+			"url": "localhost:8080/api/v1/likedComments/users/9/count",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6378a56b-a4dc-4a78-a2ed-17dad689d9a9",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "f2e429d4-3787-4b36-ae76-92f1b4b7e015",
+			"name": "updateComment",
+			"url": "localhost:8080/api/v1/comments/38",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "09a14432-711d-4c72-8427-cc0b05ef7f5f",
+			"rawModeData": "{\n    \"content\": \"Real Life\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "f59edc1d-1c69-48a5-bf20-fd3fa384c69d",
+			"name": "getCountLikedCommentByComment",
+			"url": "localhost:8080/api/v1/likedComments/comment/4/count",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6378a56b-a4dc-4a78-a2ed-17dad689d9a9",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "fb02be2b-9f41-4c93-9ea3-ebbb7a75675b",
+			"name": "getLikedCommentByComment",
+			"url": "localhost:8080/api/v1/likedComments/comment/2",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6378a56b-a4dc-4a78-a2ed-17dad689d9a9",
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}
